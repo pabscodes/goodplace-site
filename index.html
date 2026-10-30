@@ -122,9 +122,14 @@
   .play { background: var(--paper); color: var(--ink); }
   .play:hover { background: var(--white); }
 
-  .step { transition: opacity 1.2s ease; }
+  .step, .pin, .again { transition: opacity .5s ease, transform .5s ease; }
+  .stage.seq .step:not(.lit), .stage.seq .again:not(.lit) { opacity: .4; }
+  .stage.seq .pin:not(.lit) { background: var(--bone); color: var(--orange); }
+  .pin { transition: background-color .5s ease, color .5s ease, transform .5s ease; }
+  .stage.seq .pin.lit { transform: scale(1.12); }
+  .road .car { transition: opacity .3s ease; }
 
-  @media (prefers-reduced-motion: reduce) { .step { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .step, .pin, .again { transition: none; } }
 
   /* Close */
   .close { background: var(--pine); color: var(--bone); }
@@ -256,7 +261,7 @@ function roadPath(p) {
 
 // Positions come from offsetLeft/offsetTop (layout boxes), so fades and frame resizes never move the line.
 function box(el) { return { l: el.offsetLeft, t: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight }; }
-let path = null, car = null, pinLens = [], loopStart = 0;
+let line = null, path = null, car = null, pinLens = [], loopStart = 0;
 
 // A single line in the gutter with every stop on it, in story order.
 function draw() {
@@ -266,9 +271,10 @@ function draw() {
   const steps = [...stage.querySelectorAll('.step')];
   const ag = box(stage.querySelector('.again'));
   const cx = Math.round(wide ? W / 2 : 28);
-  const top = 8, bottom = Math.round(ag.t + ag.h / 2);
+  const top = 8, bottom = Math.round(ag.t);
   // One straight line down the middle; the dot travels it top to bottom, then starts over.
   const d = `M${cx},${top} L${cx},${bottom}`;
+  line = { x: cx, top, bottom };
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'road'); svg.setAttribute('aria-hidden', 'true');
   path = document.createElementNS(NS, 'path'); path.setAttribute('class', 'mid'); path.setAttribute('d', d); svg.appendChild(path);
@@ -297,14 +303,40 @@ function relayout() {
   layoutRows(); requestAnimationFrame(draw);
 }
 
+// Zip, pause, light up; repeat down the line until every stop is lit, then all go quiet and it starts again.
 function run() {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  stage.classList.add('running');
-  const speed = 0.12, t0 = performance.now();
+  stage.classList.add('running', 'seq');
+  const ZIP = 650, PAUSE = 1500, HOLD = 2200, REST = 900;
+  const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+  const steps = () => [...stage.querySelectorAll('.step')];
+  const pins = () => [...stage.querySelectorAll('.pin')];
+  const again = stage.querySelector('.again');
+  const light = n => {
+    steps().forEach((s, i) => s.classList.toggle('lit', i < n));
+    pins().forEach((p, i) => p.classList.toggle('lit', i < n));
+    again.classList.toggle('lit', n > steps().length);
+  };
+  const stopY = i => i === 0 ? line.top : (i <= pts.length ? pts[i - 1].y : line.bottom);
+  let phase = 'rest', i = 0, t0 = performance.now(), from = 0;
+  light(0);
   const frame = now => {
-    if (path) {
-      const total = path.getTotalLength(), q = path.getPointAtLength(((now - t0) * speed) % total);
-      car.setAttribute('cx', q.x.toFixed(1)); car.setAttribute('cy', q.y.toFixed(1));
+    if (line && car) {
+      const el = now - t0, last = pts.length + 1;
+      if (phase === 'rest') {
+        car.style.opacity = 0; car.setAttribute('cx', line.x); car.setAttribute('cy', line.top);
+        if (el > REST) { phase = 'zip'; i = 1; from = line.top; t0 = now; car.style.opacity = 1; }
+      } else if (phase === 'zip') {
+        const k = Math.min(1, el / ZIP), y = from + (stopY(i) - from) * ease(k);
+        car.setAttribute('cx', line.x); car.setAttribute('cy', y.toFixed(1));
+        if (k >= 1) { light(i); phase = 'pause'; t0 = now; }
+      } else if (phase === 'pause') {
+        if (el > (i === last ? HOLD : PAUSE)) {
+          if (i === last) { light(0); phase = 'rest'; }
+          else { from = stopY(i); i++; phase = 'zip'; }
+          t0 = now;
+        }
+      }
     }
     requestAnimationFrame(frame);
   };
