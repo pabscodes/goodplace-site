@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Goodplace | Let your goodplace find you</title>
-  <meta name="description" content="Tell Goodplace what home means to you, and the right new home finds its way to you. For builders, the right buyers find their way to your homes.">
+  <meta name="description" content="Tell Goodplace how you live and what you can't live without. We look at every new home near you and find the ones that are the perfect fit.">
   <meta name="application-name" content="Goodplace">
   <meta name="apple-mobile-web-app-title" content="Goodplace">
   <meta property="og:site_name" content="Goodplace">
   <meta property="og:title" content="Goodplace | Let your goodplace find you">
-  <meta property="og:description" content="Tell Goodplace what home means to you, and the right new home finds its way to you. For builders, the right buyers find their way to your homes.">
+  <meta property="og:description" content="Tell Goodplace how you live and what you can't live without. We look at every new home near you and find the ones that are the perfect fit.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://getgoodplace.com/">
   <meta property="og:image" content="https://getgoodplace.com/og.png">
@@ -20,9 +20,8 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Goodplace | Let your goodplace find you">
-  <meta name="twitter:description" content="Tell Goodplace what home means to you, and the right new home finds its way to you. For builders, the right buyers find their way to your homes.">
+  <meta name="twitter:description" content="Tell Goodplace how you live and what you can't live without. We look at every new home near you and find the ones that are the perfect fit.">
   <meta name="twitter:image" content="https://getgoodplace.com/og.png">
-  <meta name="twitter:image:alt" content="The Goodplace logo and the words Let your goodplace find you, on orange.">
   <meta name="theme-color" content="#C4462A">
   <link rel="canonical" href="https://getgoodplace.com/">
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -30,339 +29,506 @@
   <link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="preload" href="fonts/BricolageGrotesque-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/BricolageGrotesque-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-  @font-face { font-family: "Bricolage Grotesque"; src: url("fonts/BricolageGrotesque-Variable.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
-  @font-face { font-family: "Manrope"; src: url("fonts/Manrope-Variable.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Bricolage Grotesque"; src: url("/fonts/BricolageGrotesque-Variable.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Manrope"; src: url("/fonts/Manrope-Variable.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+/* Layout: one site, two front doors. The buyer hero keeps bone type and mark on dark grounds (orange, pine, ink);
+   the builder hero keeps ink type and mark on light grounds (sky, bone, paper). Only the ground drifts.
+   Buttons are always the type color filled, with the ground color as their text.
+   Single brand look on purpose: these are the brand's colors in either viewer theme. */
+@property --g { syntax: "<color>"; inherits: true; initial-value: #234536; }
+@property --t { syntax: "<color>"; inherits: true; initial-value: #F3DCC2; }
+:root {
+  --orange: #C4462A; --bone: #F3DCC2; --paper: #FBF5EC; --ink: #1B2620; --pine: #234536; --sky: #8DB3D3;
+  --bone-dim: #DCC7AE; --ink-soft: #46564D; --rule: #DCCFBC;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Manrope", "Avenir Next", system-ui, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 720px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
 
-  /* Layout: orange hero with both doors -> bone loop with one winding line -> pine close. The page ground shifts color as each section takes over. Single light theme, set by the brand. */
-  :root {
-    --orange: #C4462A; --orange-hover: #AE3D24; --orange-bright: #E0653F;
-    --bone: #F3DCC2; --paper: #FBF5EC; --white: #FFFFFF;
-    --ink: #1B2620; --ink-raised: #26342D; --ink-muted: #5A635E; --ink-soft: #B8AC9C;
-    --pine: #234536; --pine-raised: #2D5444; --sky: #8DB3D3; --line: #E6DCCB;
-    --display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
-    --sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 48px; --s5: 96px;
-    --rc: 16px; --rp: 999px;
-    color-scheme: light;
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; }
-  [hidden] { display: none !important; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body { background: var(--paper); color: var(--ink); font: 500 16px/26px var(--sans); -webkit-font-smoothing: antialiased; }
-  a { color: inherit; }
-  h1, h2, h3, p { margin: 0; }
-  h1, h2 { text-wrap: balance; }
-  .in { width: 100%; max-width: 1200px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
-  @media (max-width: 520px) { .in { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); } }
+/* shared */
+.brand { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 21px; letter-spacing: -0.01em; }
+.brand svg { width: 26px; height: 26px; fill: currentColor; }
+.brand small { font-family: var(--body); font-weight: 500; font-size: 14px; opacity: .75; letter-spacing: 0; margin-left: 2px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 22px; }
+.side-door { font-size: 15px; font-weight: 600; text-decoration: none; display: inline-flex; gap: 6px; align-items: baseline; text-align: right; }
+.side-door em { font-style: normal; }
+.side-door span { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+@media (max-width: 560px) { .side-door .wide, .switch a small { display: none; } }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-weight: 600; font-size: clamp(46px, 8.4vw, 104px); line-height: .94; letter-spacing: -0.025em; }
+h2 { font-weight: 600; font-size: clamp(30px, 4.4vw, 48px); line-height: 1.04; letter-spacing: -0.02em; }
+h3 { font-weight: 600; font-size: 22px; line-height: 1.15; letter-spacing: -0.01em; }
+p { margin: 0; }
+.btn { appearance: none; border: 0; cursor: pointer; font: 700 16px/1 var(--body); padding: 16px 24px; border-radius: 10px; white-space: nowrap; background: var(--t); color: var(--g); transition: transform .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+canvas.play { touch-action: pan-y; }
+.mail { font-size: 15px; user-select: all; }
+.join-msg { margin-top: 12px; font-size: 14px; min-height: 1.4em; opacity: .8; }
 
-  .lockup { display: block; height: 30px; width: auto; color: var(--bone); }
-  .btn { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 var(--s3); border-radius: var(--rp); font: 700 15px/20px var(--sans); text-decoration: none; white-space: nowrap; border: 0; cursor: pointer; }
-  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .on-dark .btn:focus-visible { outline-color: var(--bone); }
-  .btn.p { background: var(--orange); color: var(--paper); }
-  .btn.p:hover { background: var(--orange-hover); }
-  .btn.bone { background: var(--bone); color: var(--ink); }
-  .btn.paper { background: var(--paper); color: var(--ink); }
-  .btn.paper:hover { background: var(--white); }
+/* heroes: ground and type drift together through one loop */
+.hero { background: var(--g); color: var(--t); animation: var(--loop) 36s linear infinite; }
+.b-hero { --loop: darkloop; --t: #F3DCC2; --g: #C4462A; }
+.k-hero { --loop: lightloop; --t: #1B2620; --g: #8DB3D3; }
+.hero.restart { animation: none; }
+@keyframes darkloop { 0%, 100% { --g: #C4462A; } 33.3% { --g: #234536; } 66.6% { --g: #1B2620; } }
+@keyframes lightloop { 0%, 100% { --g: #8DB3D3; } 33.3% { --g: #F3DCC2; } 66.6% { --g: #FBF5EC; } }
+body.paused .hero { animation-play-state: paused; }
+.hero .grid { display: grid; grid-template-columns: 1fr; gap: 8px; padding-block: 8px 64px; align-items: center; }
+.hero canvas { width: 100%; height: 300px; display: block; }
+.hero .lede { font-size: 19px; max-width: 38ch; margin-top: 22px; opacity: .9; }
+@media (min-width: 900px) {
+  .hero .grid { grid-template-columns: 1.15fr 1fr; padding-block: 24px 96px; }
+  .hero canvas { height: 470px; order: 2; }
+}
+.join { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; max-width: 480px; }
+.join label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.join input { flex: 1 1 220px; min-width: 0; font: 500 16px var(--body); padding: 15px 16px; border-radius: 10px; border: 1.5px solid color-mix(in srgb, var(--t) 45%, transparent); background: color-mix(in srgb, var(--g) 80%, #000 20%); color: var(--t); }
+.join input::placeholder { color: color-mix(in srgb, var(--t) 60%, transparent); }
+.join .hp { display: none; }
+.k-cta { display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: center; margin-top: 30px; }
 
-  /* Hero */
-  .hero { background: var(--orange); color: var(--bone); }
-  .nav { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); padding-block: var(--s3); }
-  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--s3); align-items: center; font: 700 15px/20px var(--sans); }
-  .nav ul a:not(.btn) { text-decoration: none; }
-  .nav ul a:not(.btn):hover { text-decoration: underline; text-underline-offset: 4px; }
-  .title { padding-block: var(--s5) 88px; text-align: center; }
-  .hero h1 { font: 700 clamp(52px, 8.4vw, 120px)/0.94 var(--display); letter-spacing: -0.045em; }
-  .lede { margin-top: var(--s4); display: grid; gap: 4px; font-size: 19px; line-height: 30px; }
-  @media (min-width: 1000px) { .lede p { white-space: nowrap; } }
+/* ---------- buyer: the walk-through strip ---------- */
+.moments { background: var(--paper); color: var(--ink); padding-block: 76px 84px; }
+.moments h2 { max-width: 20ch; }
+.reel { margin-top: 44px; }
+.stage { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2.2vw, 26px); }
+.stage .panel { aspect-ratio: 4 / 3; border-radius: 4px; background: var(--pine); }
+.stage .panel.p3 { background: var(--orange); }
+.stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.captions { display: grid; grid-template-columns: 1fr; gap: 26px; margin-top: 22px; counter-reset: s; }
+@media (min-width: 720px) { .captions { grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 2.2vw, 26px); } }
+.cap { min-width: 0; display: grid; gap: 8px; align-content: start; opacity: .4; transition: opacity .4s; padding-right: 12px; }
+.cap.on { opacity: 1; }
+.cap p { color: var(--ink-soft); max-width: 36ch; }
+.cap h3::before { counter-increment: s; content: counter(s) ". "; color: var(--orange); }
 
-  /* Doors */
-  .doors { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); padding-bottom: var(--s5); scroll-margin-top: var(--s4); }
-  .door { border-radius: 24px; padding: var(--s4); display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: var(--s3); min-width: 0; }
-  .door .for { font: 800 12px/16px var(--sans); letter-spacing: .14em; text-transform: uppercase; }
-  .door h2 { font: 700 clamp(30px, 3.2vw, 42px)/1.04 var(--display); letter-spacing: -0.03em; margin-top: 6px; }
-  .door .what { font-size: 17px; line-height: 27px; max-width: 30em; }
-  .door .go { display: flex; align-items: end; padding-top: var(--s1); }
-  .door ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s1); align-content: start; }
-  .door li { font: 700 14px/18px var(--sans); border-radius: var(--rp); padding: 8px 14px; }
-  .buyer li { background: var(--paper); }
-  .builder li { background: var(--ink-raised); }
-  .buyer { background: var(--bone); color: var(--ink); }
-  .buyer .for { color: var(--orange); }
-  .builder { background: var(--ink); color: var(--bone); }
-  .builder .for { color: var(--orange-bright); }
+.b-close { background: var(--ink); color: var(--bone); --g: var(--ink); --t: var(--bone); }
+.b-close .wrap { padding-block: 72px 28px; display: grid; gap: 30px; }
+.b-close h2 { font-size: clamp(36px, 6vw, 72px); line-height: 1; letter-spacing: -0.025em; }
+.b-close h2 span { display: block; opacity: .62; }
+.b-close .houses { display: block; width: 100%; max-width: 960px; height: auto; margin: 8px auto -1px; }
+.btn.ghost { background: transparent; color: var(--t); box-shadow: inset 0 0 0 1.5px var(--t); }
 
-  /* Loop */
-  .loop { background: var(--paper); }
-  .loop > .in { padding-block: var(--s5); }
-  .loop-top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--s3); }
-  .loop h2 { font: 700 clamp(34px, 4.4vw, 56px)/1.02 var(--display); letter-spacing: -0.035em; max-width: 12em; }
-  .loop-top p { margin-top: var(--s2); max-width: 34em; }
-  .stage { position: relative; margin-top: var(--s4); display: grid; grid-template-columns: 1fr 1fr; column-gap: 180px; row-gap: 56px; padding-top: 40px; }
-  .stage svg.road { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 0; }
-  .road .mid, .road .stub { fill: none; stroke: var(--orange); stroke-width: 3; stroke-linecap: round; }
-  .stage:not(.running) .road .car { opacity: 0; }
-  .road .car { fill: var(--orange); stroke: var(--paper); stroke-width: 3; }
-  .pin { position: absolute; z-index: 2; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; background: var(--orange); color: var(--bone); display: grid; place-items: center; box-shadow: 0 0 0 5px var(--paper); }
-  .pin svg { width: 24px; height: auto; display: block; }
+.foot { background: var(--pine); color: var(--bone); }
+.foot .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; padding-block: 30px; font-size: 15px; }
 
-  .step { position: relative; z-index: 1; grid-column: 1; align-self: start; border-radius: var(--rc); padding: var(--s3); min-width: 0; }
-  .step.sh { grid-column: 2; }
-  .step .who { font: 800 12px/16px var(--sans); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 4px; }
-  .step h3 { font: 800 20px/26px var(--sans); letter-spacing: -0.01em; margin-bottom: var(--s2); }
-  .step.sb { background: var(--bone); }
-  .step.sb .who { color: var(--orange); }
-  .step.sh { background: var(--ink); color: var(--bone); }
-  .step.sh .who { color: var(--orange-bright); }
-  .bub { background: var(--white); border-radius: 14px 14px 14px 4px; padding: 10px 12px; font-size: 15px; line-height: 22px; max-width: 88%; }
-  .bub + .bub { margin-top: 8px; }
-  .bub.me { background: var(--orange); color: var(--paper); border-radius: 14px 14px 4px 14px; margin-left: auto; }
-  .bub small { display: block; font: 800 11px/14px var(--sans); color: var(--ink-muted); margin-bottom: 2px; }
-  .bub.me small { color: var(--bone); }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .chips span { font: 700 12px/16px var(--sans); background: var(--paper); border-radius: var(--rp); padding: 5px 10px; }
-  .rec { background: var(--ink-raised); border-radius: 12px; padding: 12px; font-size: 14px; line-height: 21px; }
-  .rec b { display: block; font: 700 15px/20px var(--sans); }
-  .rec dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; margin: 8px 0 0; }
-  .rec dt { color: var(--ink-soft); }
-  .rec dd { margin: 0; }
-  .oks { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-  .oks span { font: 800 12px/16px var(--sans); background: var(--sky); color: var(--ink); border-radius: var(--rp); padding: 5px 10px; }
-  .again { grid-column: 1 / -1; justify-self: center; position: relative; z-index: 1; margin-top: 56px; background: var(--orange); color: var(--paper); border-radius: var(--rp); padding: 12px 22px; font: 700 16px/22px var(--sans); text-align: center; }
-  .loop-foot { margin-top: var(--s4); display: flex; justify-content: center; }
-  .play { background: var(--paper); color: var(--ink); }
-  .play:hover { background: var(--white); }
+/* ---------- builder page ---------- */
+.loop { background: var(--paper); color: var(--ink); padding-block: 76px 84px; }
+.loop-head { display: grid; gap: 14px; max-width: 640px; }
+.loop-head p { color: var(--ink-soft); font-size: 18px; }
+.opt { margin-top: 26px; }
+.reel.k { margin-top: 0; }
+.kstage { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(10px, 2vw, 24px); }
+.kstage .panel { aspect-ratio: 1; border-radius: 4px; background: var(--bone); }
+.kstage .panel:nth-child(even) { background: var(--sky); }
+.kstage canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ksteps { display: grid; grid-template-columns: 1fr 1fr; gap: 22px clamp(10px, 2vw, 24px); margin-top: 22px; counter-reset: k; }
+@media (min-width: 820px) { .ksteps { grid-template-columns: repeat(4, 1fr); } }
+.ks { min-width: 0; display: grid; gap: 6px; align-content: start; padding-right: 10px; transition: opacity .4s; }
+.ks b { font-family: var(--display); font-weight: 600; font-size: 20px; line-height: 1.2; }
+.ks b::before { counter-increment: k; content: counter(k) ". "; color: var(--orange); }
+.ks span { color: var(--ink-soft); font-size: 16px; }
+.walk .ks { opacity: .45; }
+.walk .ks.on { opacity: 1; }
+.learn { margin: 88px auto 12px; display: grid; gap: 26px; justify-items: center; text-align: center; max-width: 820px; --g: var(--paper); --t: var(--ink); }
+.learn .pill { cursor: default; }
+.learn .pill:hover { transform: none; }
+.learn p { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.6vw, 42px); line-height: 1.14; letter-spacing: -0.015em; text-wrap: balance; }
+.learn p .w { opacity: var(--o, 1); transition: opacity .25s; }
+@media (max-width: 719px) { .learn { margin-top: 64px; } }
+.kstage .panel { position: relative; overflow: hidden; }
+.kstage .ill { position: absolute; top: 10%; left: 50%; width: 21%; color: var(--ink); opacity: .16; transform: translateX(-50%) scale(.86); transition: opacity .5s, transform .5s cubic-bezier(.3, 1.6, .5, 1); }
+.kstage .ill svg { display: block; width: 100%; height: auto; }
+.kstage .panel.on .ill { opacity: 1; transform: translateX(-50%) scale(1); }
+.kstage .back { position: absolute; left: 6%; bottom: 13%; width: 88%; height: auto; opacity: .5; }
 
-  .step, .pin, .again { transition: opacity .5s ease, transform .5s ease; }
-  .stage.seq .step:not(.lit), .stage.seq .again:not(.lit) { opacity: .4; }
-  .stage.seq .pin:not(.lit) { background: var(--bone); color: var(--orange); }
-  .pin { transition: background-color .5s ease, color .5s ease, transform .5s ease; }
-  .stage.seq .pin.lit { transform: scale(1.12); }
-  .road .car { transition: opacity .3s ease; }
+.k-close { background: var(--bone); color: var(--ink); --g: var(--bone); --t: var(--ink); }
+.k-close .wrap { padding-block: 64px 28px; display: grid; gap: 22px; }
+.k-close p { max-width: 46ch; color: var(--ink-soft); font-size: 18px; }
+.k-close .street { display: block; width: 100%; max-width: 960px; height: auto; margin: 8px auto -1px; }
+.k-foot { background: var(--pine); color: var(--bone); }
+.k-foot .wrap { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; padding-block: 30px; font-size: 15px; }
 
-  @media (prefers-reduced-motion: reduce) { .step, .pin, .again { transition: none; } }
-
-  /* Close */
-  .close { background: var(--pine); color: var(--bone); }
-  .close .in { padding-block: var(--s5) var(--s4); display: grid; gap: var(--s4); }
-  .close h2 { font: 700 clamp(36px, 5vw, 64px)/1.04 var(--display); letter-spacing: -0.035em; }
-  .close h2 span { display: block; color: var(--sky); }
-  .close .row { display: flex; flex-wrap: wrap; gap: var(--s2); }
-  .close .fine { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2); padding-top: var(--s3); border-top: 1px solid var(--pine-raised); font-size: 14px; line-height: 20px; }
-  .close .fine .lockup { height: 22px; }
-
-  @media (max-width: 900px) {
-    .nav ul li.link { display: none; }
-    .title { text-align: left; padding-block: var(--s4) var(--s5); }
-    .doors { grid-template-columns: 1fr; }
-    .door { padding: var(--s3); }
-    .stage { grid-template-columns: 1fr; row-gap: 40px; padding-left: 76px; }
-    .pin { width: 32px; height: 32px; margin: -16px 0 0 -16px; box-shadow: 0 0 0 4px var(--paper); }
-    .pin svg { width: 18px; }
-    .step, .step.sh { grid-column: 1; }
-    .again { justify-self: start; margin-top: 8px; }
-  }
+/* phones: one big frame at a time; the strip pans to follow the mark, the next frame peeks in from the right */
+@media (max-width: 719px) {
+  .reel { overflow: hidden; border-radius: 4px; }
+  .stage, .kstage { width: max-content; grid-template-columns: repeat(var(--n), 78vw); gap: 12px; will-change: transform; }
+  .stage { --n: 3; } .kstage { --n: 4; }
+  .kstage .panel { aspect-ratio: 6 / 5; }
+  .captions, .ksteps { grid-template-columns: 1fr; margin-top: 18px; }
+  .captions .cap, .ksteps .ks { grid-area: 1 / 1; opacity: 0; visibility: hidden; transition: opacity .4s, visibility .4s; }
+  .captions .cap.on, .ksteps .ks.on { opacity: 1; visibility: visible; }
+  .hero canvas { height: 210px; }
+  .hero .grid { padding-bottom: 52px; }
+  .moments, .loop { padding-block: 60px 64px; }
+}
+.motion-toggle { appearance: none; background: none; border: 0; padding: 0; color: inherit; font: inherit; font-size: 15px; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; opacity: .8; }
+a.btn { display: inline-block; text-decoration: none; }
+.join-msg a { color: inherit; }
 </style>
 </head>
 <body>
-<header class="hero on-dark">
-  <div class="in">
-    <nav class="nav" aria-label="Main">
-      <svg class="lockup" aria-label="Goodplace" xmlns="http://www.w3.org/2000/svg" viewBox="-0.00 -850.00 5698.15 996.00" role="img" aria-label="Goodplace"><g transform="translate(0.00 -850.00) scale(10.78543) translate(-10.00 -11.19)" fill="currentColor"><path fill-rule="evenodd" d="M51.71 11.62L51.82 11.69L52.35 12.07L52.86 12.51L55.71 15.03L58.54 17.52L58.57 17.54L61.43 20.06L64.28 22.57L64.30 22.59L65.65 23.77L66.38 24.67L66.76 25.77L66.75 26.93L66.50 27.73L65.88 29.09L65.86 29.12L65.86 29.12L65.86 29.13L65.20 30.63L65.19 30.66L65.19 30.66L65.18 30.68L65.18 30.68L65.18 30.69L64.55 32.20L64.53 32.23L63.91 33.77L63.89 33.76L63.88 33.79L63.90 33.80L63.30 35.38L63.28 35.43L62.73 36.92L62.72 36.97L62.62 37.24L62.54 37.60L62.50 37.98L62.56 38.69L62.62 38.88L62.98 39.50L63.11 39.65L63.69 40.07L63.88 40.15L64.57 40.29L64.83 40.28L65.44 40.16L65.66 40.06L65.89 39.95L66.13 39.80L66.19 39.77L66.19 39.77L67.58 38.96L67.63 38.93L68.94 38.20L68.98 38.17L70.36 37.42L70.41 37.40L71.81 36.66L71.85 36.64L73.20 35.96L73.24 35.93L74.65 35.24L74.69 35.23L75.26 34.96L76.38 34.65L77.54 34.73L78.96 35.48L81.43 37.66L84.28 40.16L84.29 40.17L87.13 42.68L87.15 42.69L88.69 44.04L89.13 44.52L89.19 44.59L89.79 45.83L89.89 46.23L90.00 47.07L90.00 62.47L89.80 63.62L89.23 64.63L88.35 65.39L87.27 65.81L86.01 65.82L85.30 65.69L85.26 65.69L85.25 65.69L85.20 65.68L83.38 65.39L83.33 65.38L81.54 65.12L81.50 65.12L79.68 64.88L79.66 64.88L79.61 64.87L77.81 64.67L77.78 64.66L77.77 64.66L77.75 64.66L76.49 64.53L76.12 64.54L75.74 64.58L75.07 64.81L74.89 64.92L74.37 65.40L74.26 65.57L73.99 66.23L73.95 66.43L73.98 67.14L74.03 67.33L74.36 67.98L74.61 68.29L74.89 68.56L75.94 69.38L75.98 69.41L77.27 70.45L77.31 70.48L78.67 71.60L78.70 71.63L80.00 72.73L80.04 72.77L80.04 72.77L81.38 73.94L81.41 73.97L82.70 75.12L82.73 75.15L83.96 76.29L84.00 76.32L85.28 77.54L85.31 77.57L86.51 78.75L86.54 78.77L87.78 80.02L87.79 80.03L87.80 80.04L87.84 80.08L88.97 81.25L89.01 81.28L89.07 81.36L89.71 82.32L90.00 83.69L90.00 86.50L89.95 87.09L89.94 87.13L89.55 88.22L88.81 89.12L87.45 89.83L87.22 89.89L86.37 90.00L57.72 90.00L56.58 89.80L55.56 89.23L54.80 88.35L54.45 87.53L54.28 86.95L54.27 86.90L54.26 86.87L54.26 86.88L53.82 85.41L53.81 85.38L53.34 83.91L53.32 83.84L53.32 83.84L53.31 83.82L52.83 82.39L52.83 82.38L52.82 82.38L52.81 82.34L52.30 80.90L52.29 80.87L52.28 80.86L51.98 80.04L51.82 79.72L51.61 79.40L51.10 78.89L50.94 78.78L50.26 78.53L50.07 78.50L49.35 78.55L49.09 78.63L48.71 78.81L48.70 78.82L48.08 79.46L47.77 79.88L47.44 80.56L47.40 80.62L47.40 80.63L46.70 81.96L46.67 82.00L46.01 83.23L45.98 83.27L45.26 84.55L45.24 84.59L44.52 85.81L44.52 85.81L44.49 85.86L43.75 87.08L43.73 87.13L43.00 88.29L42.97 88.33L42.97 88.33L42.96 88.35L42.95 88.35L42.94 88.38L42.89 88.46L42.84 88.52L42.77 88.61L42.77 88.61L42.76 88.60L42.09 89.31L41.06 89.84L40.04 90.00L13.50 90.00L12.91 89.95L12.87 89.94L11.78 89.55L10.88 88.81L10.17 87.44L10.11 87.22L10.00 86.36L10.00 77.89L10.20 76.74L10.77 75.73L12.00 74.79L13.54 74.09L13.58 74.07L13.58 74.07L15.27 73.28L15.27 73.27L15.30 73.26L16.97 72.44L16.98 72.46L17.01 72.44L17.00 72.43L18.62 71.60L18.63 71.60L18.67 71.58L18.67 71.58L20.27 70.74L20.27 70.74L20.32 70.70L21.93 69.83L21.95 69.82L21.96 69.81L21.97 69.81L23.55 68.91L23.58 68.89L24.72 68.23L25.00 68.02L25.29 67.75L25.70 67.18L25.78 66.98L25.91 66.29L25.91 66.08L25.74 65.39L25.65 65.21L25.21 64.65L25.05 64.52L24.41 64.19L24.02 64.09L23.64 64.04L22.36 63.99L22.31 63.99L20.60 63.91L20.56 63.91L18.77 63.80L18.73 63.79L17.02 63.66L17.02 63.66L16.96 63.66L15.27 63.51L15.22 63.49L15.22 63.50L13.47 63.32L13.47 63.31L13.42 63.31L13.00 63.26L11.89 62.93L10.95 62.24L10.30 61.28L10.00 59.89L10.00 46.95L10.05 46.36L10.07 46.26L10.61 44.93L10.85 44.59L11.40 43.96L12.86 42.69L12.86 42.68L15.71 40.17L18.57 37.66L18.59 37.68L18.59 37.68L18.57 37.66L21.43 35.14L22.87 33.88L23.86 33.27L25.00 33.03L26.15 33.19L27.41 33.94L27.42 33.94L27.46 33.97L28.67 35.05L28.72 35.09L29.98 36.17L30.05 36.23L30.05 36.23L31.30 37.28L31.32 37.29L31.33 37.30L32.61 38.34L32.61 38.34L32.66 38.38L33.89 39.34L33.93 39.37L33.94 39.38L34.18 39.56L34.49 39.75L34.84 39.91L35.54 40.07L35.74 40.07L36.44 39.92L36.62 39.84L37.20 39.42L37.33 39.27L37.68 38.64L37.76 38.41L37.83 37.78L37.81 37.55L37.77 37.29L37.69 36.95L37.68 36.91L37.36 35.41L37.35 35.36L37.03 33.80L37.02 33.75L36.74 32.22L36.73 32.17L36.48 30.69L36.47 30.64L36.23 29.08L36.23 29.08L36.22 29.03L36.00 27.50L36.00 27.48L35.99 27.43L35.81 25.98L35.80 25.93L35.65 24.56L35.72 23.40L36.17 22.33L36.78 21.63L38.57 20.06L38.58 20.05L41.43 17.54L44.29 15.03L44.29 15.03L47.14 12.51L47.65 12.06L48.15 11.70L48.24 11.64L49.32 11.22L50.49 11.19ZM49.83 45.48L48.77 45.54L48.43 45.58L47.38 45.75L47.06 45.83L46.03 46.12L45.72 46.23L44.73 46.64L44.42 46.79L43.49 47.30L43.21 47.48L42.34 48.10L42.08 48.31L41.28 49.02L41.04 49.26L40.34 50.05L40.13 50.31L39.51 51.18L39.33 51.47L38.81 52.40L38.67 52.70L38.26 53.69L38.15 54.01L37.85 55.03L37.78 55.36L37.60 56.41L37.56 56.74L37.51 57.80L37.51 58.14L37.56 59.20L37.60 59.54L37.78 60.59L37.85 60.92L38.15 61.94L38.26 62.26L38.67 63.24L38.81 63.55L39.33 64.48L39.51 64.76L40.13 65.63L40.34 65.89L41.04 66.69L41.28 66.93L42.08 67.64L42.34 67.85L43.21 68.46L43.49 68.64L44.43 69.16L44.73 69.30L45.71 69.71L46.03 69.82L47.06 70.12L47.38 70.19L48.43 70.37L48.77 70.41L49.83 70.47L50.17 70.47L51.23 70.41L51.57 70.37L52.62 70.19L52.94 70.12L53.97 69.82L54.29 69.71L55.27 69.30L55.57 69.16L56.51 68.64L56.79 68.46L57.66 67.85L57.92 67.64L58.72 66.93L58.96 66.69L59.66 65.89L59.87 65.63L60.49 64.76L60.67 64.48L61.19 63.55L61.33 63.24L61.74 62.26L61.85 61.94L62.15 60.92L62.22 60.59L62.40 59.54L62.44 59.20L62.49 58.14L62.49 57.80L62.44 56.74L62.40 56.41L62.22 55.36L62.15 55.03L61.85 54.01L61.74 53.69L61.33 52.70L61.19 52.40L60.67 51.47L60.49 51.18L59.87 50.31L59.66 50.05L58.96 49.26L58.72 49.02L57.92 48.31L57.66 48.10L56.79 47.48L56.51 47.30L55.58 46.79L55.27 46.64L54.28 46.23L53.97 46.12L52.94 45.83L52.62 45.75L51.57 45.58L51.23 45.54L50.17 45.48Z"></path><path d="M59.50 57.97L59.44 59.04L59.26 60.09L58.97 61.11L58.56 62.09L58.04 63.03L57.43 63.90L56.72 64.69L55.92 65.40L55.05 66.02L54.12 66.53L53.14 66.94L52.11 67.23L51.06 67.41L50.00 67.47L48.94 67.41L47.89 67.23L46.86 66.94L45.88 66.53L44.95 66.02L44.08 65.40L43.28 64.69L42.57 63.90L41.96 63.03L41.44 62.09L41.03 61.11L40.74 60.09L40.56 59.04L40.50 57.97L40.56 56.91L40.74 55.86L41.03 54.84L41.44 53.85L41.96 52.92L42.57 52.05L43.28 51.26L44.08 50.55L44.95 49.93L45.88 49.41L46.86 49.01L47.89 48.71L48.94 48.53L50.00 48.47L51.06 48.53L52.11 48.71L53.14 49.01L54.12 49.41L55.05 49.93L55.92 50.55L56.72 51.26L57.43 52.05L58.04 52.92L58.56 53.85L58.97 54.84L59.26 55.86L59.44 56.91Z"></path></g><path transform="translate(1062.83 0)" fill="currentColor" d="M304 14Q220 14 158.0 -28.0Q96 -70 63.0 -146.5Q30 -223 30 -325Q30 -400 48.5 -463.5Q67 -527 106.0 -574.5Q145 -622 203.5 -648.0Q262 -674 342 -674Q408 -674 457.0 -656.0Q506 -638 538.0 -605.5Q570 -573 584.5 -529.0Q599 -485 596 -433L460 -416Q462 -463 447.0 -493.0Q432 -523 404.0 -538.0Q376 -553 337 -553Q291 -553 256.0 -528.5Q221 -504 201.0 -455.0Q181 -406 181 -332Q181 -276 192.5 -233.5Q204 -191 226.0 -162.5Q248 -134 280.0 -119.0Q312 -104 351 -104Q393 -104 422.5 -119.5Q452 -135 468.0 -163.0Q484 -191 485 -229H375V-333H614V-214V0H512L515 -181H506Q500 -118 475.0 -74.5Q450 -31 407.0 -8.5Q364 14 304 14Z M920.0 14Q845.0 14 786.5 -16.5Q728.0 -47 695.5 -108.0Q663.0 -169 663.0 -262Q663.0 -357 697.0 -418.0Q731.0 -479 789.5 -509.0Q848.0 -539 921.0 -539Q997.0 -539 1055.0 -508.5Q1113.0 -478 1145.5 -416.5Q1178.0 -355 1178.0 -262Q1178.0 -166 1144.0 -105.0Q1110.0 -44 1051.5 -15.0Q993.0 14 920.0 14ZM923.0 -94Q958.0 -94 982.0 -113.0Q1006.0 -132 1019.0 -168.0Q1032.0 -204 1032.0 -254Q1032.0 -309 1018.0 -346.5Q1004.0 -384 978.5 -404.5Q953.0 -425 917.0 -425Q883.0 -425 858.5 -406.0Q834.0 -387 821.5 -350.5Q809.0 -314 809.0 -263Q809.0 -184 839.0 -139.0Q869.0 -94 923.0 -94Z M1474.0 14Q1399.0 14 1340.5 -16.5Q1282.0 -47 1249.5 -108.0Q1217.0 -169 1217.0 -262Q1217.0 -357 1251.0 -418.0Q1285.0 -479 1343.5 -509.0Q1402.0 -539 1475.0 -539Q1551.0 -539 1609.0 -508.5Q1667.0 -478 1699.5 -416.5Q1732.0 -355 1732.0 -262Q1732.0 -166 1698.0 -105.0Q1664.0 -44 1605.5 -15.0Q1547.0 14 1474.0 14ZM1477.0 -94Q1512.0 -94 1536.0 -113.0Q1560.0 -132 1573.0 -168.0Q1586.0 -204 1586.0 -254Q1586.0 -309 1572.0 -346.5Q1558.0 -384 1532.5 -404.5Q1507.0 -425 1471.0 -425Q1437.0 -425 1412.5 -406.0Q1388.0 -387 1375.5 -350.5Q1363.0 -314 1363.0 -263Q1363.0 -184 1393.0 -139.0Q1423.0 -94 1477.0 -94Z M1973.0 14Q1916.0 14 1870.5 -16.5Q1825.0 -47 1798.0 -109.0Q1771.0 -171 1771.0 -267Q1771.0 -358 1795.5 -418.5Q1820.0 -479 1864.0 -509.0Q1908.0 -539 1967.0 -539Q2015.0 -539 2051.0 -519.0Q2087.0 -499 2110.0 -456.5Q2133.0 -414 2142.0 -347H2151.0Q2146.0 -385 2141.0 -419.0Q2136.0 -453 2133.5 -484.0Q2131.0 -515 2131.0 -541V-695H2276.0L2275.0 -196L2276.0 0H2149.0L2152.0 -166H2144.0Q2133.0 -107 2110.0 -66.5Q2087.0 -26 2053.0 -6.0Q2019.0 14 1973.0 14ZM2020.0 -103Q2044.0 -103 2065.0 -114.0Q2086.0 -125 2100.5 -146.0Q2115.0 -167 2123.5 -195.0Q2132.0 -223 2132.0 -257V-264Q2132.0 -291 2126.5 -314.5Q2121.0 -338 2111.0 -357.0Q2101.0 -376 2087.0 -389.5Q2073.0 -403 2056.0 -410.0Q2039.0 -417 2020.0 -417Q1987.0 -417 1963.5 -395.5Q1940.0 -374 1928.5 -338.5Q1917.0 -303 1917.0 -258Q1917.0 -215 1929.0 -179.5Q1941.0 -144 1964.0 -123.5Q1987.0 -103 2020.0 -103Z M2342.0 146 2343.0 -327 2342.0 -525H2470.0L2467.0 -360H2474.0Q2486.0 -421 2509.0 -461.0Q2532.0 -501 2567.0 -520.0Q2602.0 -539 2649.0 -539Q2710.0 -539 2754.5 -508.0Q2799.0 -477 2822.5 -416.0Q2846.0 -355 2846.0 -265Q2846.0 -169 2820.0 -107.5Q2794.0 -46 2750.0 -16.0Q2706.0 14 2650.0 14Q2603.0 14 2567.5 -6.5Q2532.0 -27 2509.5 -68.0Q2487.0 -109 2478.0 -170H2468.0Q2474.0 -137 2478.0 -104.5Q2482.0 -72 2484.5 -41.5Q2487.0 -11 2487.0 17V146ZM2597.0 -106Q2632.0 -106 2654.5 -126.5Q2677.0 -147 2688.5 -182.5Q2700.0 -218 2700.0 -260Q2700.0 -304 2688.0 -339.0Q2676.0 -374 2653.5 -394.5Q2631.0 -415 2598.0 -415Q2574.0 -415 2553.5 -404.5Q2533.0 -394 2518.0 -374.5Q2503.0 -355 2494.5 -327.0Q2486.0 -299 2486.0 -263V-256Q2486.0 -229 2491.5 -206.0Q2497.0 -183 2507.0 -164.5Q2517.0 -146 2531.0 -133.0Q2545.0 -120 2562.0 -113.0Q2579.0 -106 2597.0 -106Z M2901.0 0V-695H3045.0V0Z M3250.0 14Q3209.0 14 3173.5 -0.5Q3138.0 -15 3115.5 -46.0Q3093.0 -77 3093.0 -129Q3093.0 -177 3111.5 -207.5Q3130.0 -238 3162.0 -256.0Q3194.0 -274 3232.0 -284.0Q3270.0 -294 3309.0 -301Q3362.0 -311 3388.5 -316.5Q3415.0 -322 3424.0 -330.5Q3433.0 -339 3433.0 -354Q3433.0 -388 3409.0 -405.5Q3385.0 -423 3346.0 -423Q3323.0 -423 3299.0 -414.5Q3275.0 -406 3259.5 -384.0Q3244.0 -362 3244.0 -323L3115.0 -334Q3115.0 -394 3135.5 -433.5Q3156.0 -473 3191.0 -496.0Q3226.0 -519 3268.0 -529.0Q3310.0 -539 3351.0 -539Q3425.0 -539 3474.5 -511.5Q3524.0 -484 3549.0 -431.0Q3574.0 -378 3574.0 -301V-206Q3574.0 -172 3574.0 -137.5Q3574.0 -103 3574.5 -68.5Q3575.0 -34 3575.0 0H3448.0Q3449.0 -38 3450.0 -77.0Q3451.0 -116 3451.0 -158H3445.0Q3440.0 -111 3414.0 -72.0Q3388.0 -33 3346.0 -9.5Q3304.0 14 3250.0 14ZM3306.0 -93Q3326.0 -93 3348.5 -101.5Q3371.0 -110 3390.0 -127.5Q3409.0 -145 3421.0 -173.5Q3433.0 -202 3433.0 -243L3434.0 -266L3460.0 -271Q3452.0 -257 3431.5 -249.0Q3411.0 -241 3386.0 -236.5Q3361.0 -232 3335.0 -227.0Q3309.0 -222 3287.0 -214.0Q3265.0 -206 3251.5 -191.5Q3238.0 -177 3238.0 -152Q3238.0 -124 3257.0 -108.5Q3276.0 -93 3306.0 -93Z M3883.0 14Q3815.0 14 3765.5 -7.0Q3716.0 -28 3684.0 -65.5Q3652.0 -103 3637.0 -152.0Q3622.0 -201 3622.0 -257Q3622.0 -314 3637.0 -364.5Q3652.0 -415 3683.0 -454.5Q3714.0 -494 3763.5 -516.5Q3813.0 -539 3881.0 -539Q3961.0 -539 4011.5 -508.5Q4062.0 -478 4083.0 -429.5Q4104.0 -381 4097.0 -325L3971.0 -314Q3972.0 -351 3961.0 -375.5Q3950.0 -400 3929.0 -412.5Q3908.0 -425 3878.0 -425Q3854.0 -425 3833.5 -416.0Q3813.0 -407 3798.0 -387.5Q3783.0 -368 3775.0 -337.5Q3767.0 -307 3767.0 -264Q3767.0 -209 3781.0 -171.5Q3795.0 -134 3821.5 -114.5Q3848.0 -95 3885.0 -95Q3925.0 -95 3946.5 -113.5Q3968.0 -132 3976.0 -160.5Q3984.0 -189 3980.0 -219L4113.0 -212Q4118.0 -167 4107.0 -126.5Q4096.0 -86 4068.0 -54.0Q4040.0 -22 3994.0 -4.0Q3948.0 14 3883.0 14Z M4406.0 14Q4335.0 14 4285.5 -7.0Q4236.0 -28 4205.0 -65.0Q4174.0 -102 4160.0 -150.0Q4146.0 -198 4146.0 -253Q4146.0 -310 4160.5 -361.5Q4175.0 -413 4205.0 -453.0Q4235.0 -493 4283.0 -516.0Q4331.0 -539 4396.0 -539Q4461.0 -539 4508.0 -516.5Q4555.0 -494 4583.5 -454.0Q4612.0 -414 4621.5 -360.5Q4631.0 -307 4622.0 -243L4235.0 -237V-318L4512.0 -324L4492.0 -277Q4497.0 -323 4488.0 -356.0Q4479.0 -389 4456.5 -406.5Q4434.0 -424 4396.0 -424Q4356.0 -424 4331.5 -403.5Q4307.0 -383 4296.0 -346.0Q4285.0 -309 4285.0 -260Q4285.0 -175 4315.5 -135.0Q4346.0 -95 4407.0 -95Q4435.0 -95 4453.5 -102.5Q4472.0 -110 4483.5 -123.5Q4495.0 -137 4499.5 -155.0Q4504.0 -173 4503.0 -194L4635.0 -186Q4637.0 -151 4626.5 -115.5Q4616.0 -80 4589.5 -51.0Q4563.0 -22 4517.5 -4.0Q4472.0 14 4406.0 14Z"></path></svg>
-      <ul>
-        <li class="link"><a href="#doors">For home seekers</a></li>
-        <li class="link"><a href="#doors">For homebuilders</a></li>
-        <li><a class="btn bone" href="#doors">Get started</a></li>
-      </ul>
-    </nav>
-    <div class="title">
-      <h1>Let your goodplace find you</h1>
-      <div class="lede">
-        <p>Tell Goodplace what home means to you, and the right new home finds its way to you.</p>
-        <p>For builders, it works the other way: the right buyers find their way to your homes.</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="10 10 80 80"><path fill-rule="evenodd" d="M51.71 11.62L51.82 11.69L52.35 12.07L52.86 12.51L55.71 15.03L58.54 17.52L58.57 17.54L61.43 20.06L64.28 22.57L64.30 22.59L65.65 23.77L66.38 24.67L66.76 25.77L66.75 26.93L66.50 27.73L65.88 29.09L65.86 29.12L65.86 29.12L65.86 29.13L65.20 30.63L65.19 30.66L65.19 30.66L65.18 30.68L65.18 30.68L65.18 30.69L64.55 32.20L64.53 32.23L63.91 33.77L63.89 33.76L63.88 33.79L63.90 33.80L63.30 35.38L63.28 35.43L62.73 36.92L62.72 36.97L62.62 37.24L62.54 37.60L62.50 37.98L62.56 38.69L62.62 38.88L62.98 39.50L63.11 39.65L63.69 40.07L63.88 40.15L64.57 40.29L64.83 40.28L65.44 40.16L65.66 40.06L65.89 39.95L66.13 39.80L66.19 39.77L66.19 39.77L67.58 38.96L67.63 38.93L68.94 38.20L68.98 38.17L70.36 37.42L70.41 37.40L71.81 36.66L71.85 36.64L73.20 35.96L73.24 35.93L74.65 35.24L74.69 35.23L75.26 34.96L76.38 34.65L77.54 34.73L78.96 35.48L81.43 37.66L84.28 40.16L84.29 40.17L87.13 42.68L87.15 42.69L88.69 44.04L89.13 44.52L89.19 44.59L89.79 45.83L89.89 46.23L90.00 47.07L90.00 62.47L89.80 63.62L89.23 64.63L88.35 65.39L87.27 65.81L86.01 65.82L85.30 65.69L85.26 65.69L85.25 65.69L85.20 65.68L83.38 65.39L83.33 65.38L81.54 65.12L81.50 65.12L79.68 64.88L79.66 64.88L79.61 64.87L77.81 64.67L77.78 64.66L77.77 64.66L77.75 64.66L76.49 64.53L76.12 64.54L75.74 64.58L75.07 64.81L74.89 64.92L74.37 65.40L74.26 65.57L73.99 66.23L73.95 66.43L73.98 67.14L74.03 67.33L74.36 67.98L74.61 68.29L74.89 68.56L75.94 69.38L75.98 69.41L77.27 70.45L77.31 70.48L78.67 71.60L78.70 71.63L80.00 72.73L80.04 72.77L80.04 72.77L81.38 73.94L81.41 73.97L82.70 75.12L82.73 75.15L83.96 76.29L84.00 76.32L85.28 77.54L85.31 77.57L86.51 78.75L86.54 78.77L87.78 80.02L87.79 80.03L87.80 80.04L87.84 80.08L88.97 81.25L89.01 81.28L89.07 81.36L89.71 82.32L90.00 83.69L90.00 86.50L89.95 87.09L89.94 87.13L89.55 88.22L88.81 89.12L87.45 89.83L87.22 89.89L86.37 90.00L57.72 90.00L56.58 89.80L55.56 89.23L54.80 88.35L54.45 87.53L54.28 86.95L54.27 86.90L54.26 86.87L54.26 86.88L53.82 85.41L53.81 85.38L53.34 83.91L53.32 83.84L53.32 83.84L53.31 83.82L52.83 82.39L52.83 82.38L52.82 82.38L52.81 82.34L52.30 80.90L52.29 80.87L52.28 80.86L51.98 80.04L51.82 79.72L51.61 79.40L51.10 78.89L50.94 78.78L50.26 78.53L50.07 78.50L49.35 78.55L49.09 78.63L48.71 78.81L48.70 78.82L48.08 79.46L47.77 79.88L47.44 80.56L47.40 80.62L47.40 80.63L46.70 81.96L46.67 82.00L46.01 83.23L45.98 83.27L45.26 84.55L45.24 84.59L44.52 85.81L44.52 85.81L44.49 85.86L43.75 87.08L43.73 87.13L43.00 88.29L42.97 88.33L42.97 88.33L42.96 88.35L42.95 88.35L42.94 88.38L42.89 88.46L42.84 88.52L42.77 88.61L42.77 88.61L42.76 88.60L42.09 89.31L41.06 89.84L40.04 90.00L13.50 90.00L12.91 89.95L12.87 89.94L11.78 89.55L10.88 88.81L10.17 87.44L10.11 87.22L10.00 86.36L10.00 77.89L10.20 76.74L10.77 75.73L12.00 74.79L13.54 74.09L13.58 74.07L13.58 74.07L15.27 73.28L15.27 73.27L15.30 73.26L16.97 72.44L16.98 72.46L17.01 72.44L17.00 72.43L18.62 71.60L18.63 71.60L18.67 71.58L18.67 71.58L20.27 70.74L20.27 70.74L20.32 70.70L21.93 69.83L21.95 69.82L21.96 69.81L21.97 69.81L23.55 68.91L23.58 68.89L24.72 68.23L25.00 68.02L25.29 67.75L25.70 67.18L25.78 66.98L25.91 66.29L25.91 66.08L25.74 65.39L25.65 65.21L25.21 64.65L25.05 64.52L24.41 64.19L24.02 64.09L23.64 64.04L22.36 63.99L22.31 63.99L20.60 63.91L20.56 63.91L18.77 63.80L18.73 63.79L17.02 63.66L17.02 63.66L16.96 63.66L15.27 63.51L15.22 63.49L15.22 63.50L13.47 63.32L13.47 63.31L13.42 63.31L13.00 63.26L11.89 62.93L10.95 62.24L10.30 61.28L10.00 59.89L10.00 46.95L10.05 46.36L10.07 46.26L10.61 44.93L10.85 44.59L11.40 43.96L12.86 42.69L12.86 42.68L15.71 40.17L18.57 37.66L18.59 37.68L18.59 37.68L18.57 37.66L21.43 35.14L22.87 33.88L23.86 33.27L25.00 33.03L26.15 33.19L27.41 33.94L27.42 33.94L27.46 33.97L28.67 35.05L28.72 35.09L29.98 36.17L30.05 36.23L30.05 36.23L31.30 37.28L31.32 37.29L31.33 37.30L32.61 38.34L32.61 38.34L32.66 38.38L33.89 39.34L33.93 39.37L33.94 39.38L34.18 39.56L34.49 39.75L34.84 39.91L35.54 40.07L35.74 40.07L36.44 39.92L36.62 39.84L37.20 39.42L37.33 39.27L37.68 38.64L37.76 38.41L37.83 37.78L37.81 37.55L37.77 37.29L37.69 36.95L37.68 36.91L37.36 35.41L37.35 35.36L37.03 33.80L37.02 33.75L36.74 32.22L36.73 32.17L36.48 30.69L36.47 30.64L36.23 29.08L36.23 29.08L36.22 29.03L36.00 27.50L36.00 27.48L35.99 27.43L35.81 25.98L35.80 25.93L35.65 24.56L35.72 23.40L36.17 22.33L36.78 21.63L38.57 20.06L38.58 20.05L41.43 17.54L44.29 15.03L44.29 15.03L47.14 12.51L47.65 12.06L48.15 11.70L48.24 11.64L49.32 11.22L50.49 11.19ZM49.83 45.48L48.77 45.54L48.43 45.58L47.38 45.75L47.06 45.83L46.03 46.12L45.72 46.23L44.73 46.64L44.42 46.79L43.49 47.30L43.21 47.48L42.34 48.10L42.08 48.31L41.28 49.02L41.04 49.26L40.34 50.05L40.13 50.31L39.51 51.18L39.33 51.47L38.81 52.40L38.67 52.70L38.26 53.69L38.15 54.01L37.85 55.03L37.78 55.36L37.60 56.41L37.56 56.74L37.51 57.80L37.51 58.14L37.56 59.20L37.60 59.54L37.78 60.59L37.85 60.92L38.15 61.94L38.26 62.26L38.67 63.24L38.81 63.55L39.33 64.48L39.51 64.76L40.13 65.63L40.34 65.89L41.04 66.69L41.28 66.93L42.08 67.64L42.34 67.85L43.21 68.46L43.49 68.64L44.43 69.16L44.73 69.30L45.71 69.71L46.03 69.82L47.06 70.12L47.38 70.19L48.43 70.37L48.77 70.41L49.83 70.47L50.17 70.47L51.23 70.41L51.57 70.37L52.62 70.19L52.94 70.12L53.97 69.82L54.29 69.71L55.27 69.30L55.57 69.16L56.51 68.64L56.79 68.46L57.66 67.85L57.92 67.64L58.72 66.93L58.96 66.69L59.66 65.89L59.87 65.63L60.49 64.76L60.67 64.48L61.19 63.55L61.33 63.24L61.74 62.26L61.85 61.94L62.15 60.92L62.22 60.59L62.40 59.54L62.44 59.20L62.49 58.14L62.49 57.80L62.44 56.74L62.40 56.41L62.22 55.36L62.15 55.03L61.85 54.01L61.74 53.69L61.33 52.70L61.19 52.40L60.67 51.47L60.49 51.18L59.87 50.31L59.66 50.05L58.96 49.26L58.72 49.02L57.92 48.31L57.66 48.10L56.79 47.48L56.51 47.30L55.58 46.79L55.27 46.64L54.28 46.23L53.97 46.12L52.94 45.83L52.62 45.75L51.57 45.58L51.23 45.54L50.17 45.48Z"/><path d="M59.50 57.97L59.44 59.04L59.26 60.09L58.97 61.11L58.56 62.09L58.04 63.03L57.43 63.90L56.72 64.69L55.92 65.40L55.05 66.02L54.12 66.53L53.14 66.94L52.11 67.23L51.06 67.41L50.00 67.47L48.94 67.41L47.89 67.23L46.86 66.94L45.88 66.53L44.95 66.02L44.08 65.40L43.28 64.69L42.57 63.90L41.96 63.03L41.44 62.09L41.03 61.11L40.74 60.09L40.56 59.04L40.50 57.97L40.56 56.91L40.74 55.86L41.03 54.84L41.44 53.85L41.96 52.92L42.57 52.05L43.28 51.26L44.08 50.55L44.95 49.93L45.88 49.41L46.86 49.01L47.89 48.71L48.94 48.53L50.00 48.47L51.06 48.53L52.11 48.71L53.14 49.01L54.12 49.41L55.05 49.93L55.92 50.55L56.72 51.26L57.43 52.05L58.04 52.92L58.56 53.85L58.97 54.84L59.26 55.86L59.44 56.91Z"/></symbol>
+</svg>
+
+<main id="view-home">
+  <section class="hero b-hero" id="bHero">
+    <div class="wrap">
+      <header class="top">
+        <a class="brand" href="/"><svg aria-hidden="true"><use href="#mark"/></svg>Goodplace</a>
+        <a class="side-door" href="/builders"><em class="wide">Build homes?</em> <span>Goodplace for builders</span> →</a>
+      </header>
+      <div class="grid">
+        <canvas id="heroMark" class="play" role="img" aria-label="The Goodplace mark swaying in the wind."></canvas>
+        <div>
+          <h1>Let your goodplace find you</h1>
+          <p class="lede">Tell us how you live and what you can't live without. We look at every new home near you, and find you the ones that are the perfect fit.</p>
+          <form class="join" id="joinForm" novalidate>
+            <label for="joinEmail">Your email</label>
+            <input id="joinEmail" name="email" type="email" required placeholder="you@email.com" autocomplete="email">
+            <input class="hp" id="joinSite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button class="btn" type="submit">Join the waitlist</button>
+          </form>
+          <p class="join-msg" id="joinMsg" aria-live="polite">We'll write with updates, and when we find homes that are a match</p>
+        </div>
       </div>
     </div>
-    <div class="doors" id="doors">
-      <article class="door buyer">
-        <div><div class="for">For home seekers</div><h2>We learn what you want,<br>then find your home</h2></div>
-        <p class="what">Tell us how you live and what you can't live without. We bring you the new homes that fit, and tell you why.</p>
-        <ul><li>Learns exactly the home you want</li><li>Homes that fit, and why</li><li>Tours booked for you</li></ul>
-        <div class="go"><a class="btn p" href="mailto:hello@getgoodplace.com?subject=Waitlist">Join the waitlist</a></div>
-      </article>
-      <article class="door builder on-dark">
-        <div><div class="for">For homebuilders</div><h2>We learn your homes,<br>then find their buyers</h2></div>
-        <p class="what">We turn your plans and listings into rich home profiles, match them to buyers who want exactly that, and run the follow-up for you.</p>
-        <ul><li>Rich home profiles</li><li>Buyers who are ready</li><li>Tours, CRM, and feedback handled</li></ul>
-        <div class="go"><a class="btn p" href="mailto:hello@getgoodplace.com?subject=Demo">Book a demo</a></div>
-      </article>
-    </div>
-  </div>
-</header>
+  </section>
 
-
-
-<section class="loop" aria-labelledby="loop-title">
-  <div class="in">
-    <div class="loop-top">
-      <div>
-        <h2 id="loop-title">Home and buyer, on the same loop</h2>
-        <p>A natural handoff between the people looking and the people building, so no buyer waits and no lead goes cold.</p>
+  <section class="moments">
+    <div class="wrap">
+      <h2>Tell us what matters to you and we keep looking day and night</h2>
+      <div class="reel"><div class="stage" id="bStage">
+        <div class="panel"></div><div class="panel"></div><div class="panel p3"></div>
+        <canvas id="bWalk" aria-hidden="true"></canvas>
+      </div></div>
+      <div class="captions" id="bCaps">
+        <div class="cap"><h3>Say what home means to you</h3><p>We build a detailed profile of the home you want and the way you want to live in it.</p></div>
+        <div class="cap"><h3>We keep looking</h3><p>We work with builders to know every new home coming up in more detail than you'll find anywhere today.</p></div>
+        <div class="cap"><h3>A home finds you</h3><p>Your Goodplace and the builder's Goodplace work it out together. You hear exactly why a home fits, and the tour gets booked.</p></div>
       </div>
     </div>
-    <div class="stage" id="stage">
-      <article class="step sb">
-        <div class="who">Home seeker</div><h3>Says what she wants</h3>
-        <div class="bub me"><small>You</small>Three bedrooms, a real yard for the dog, and an office with a door. Under $550k.</div>
-        <div class="chips"><span>3 bed</span><span>Yard</span><span>Office with a door</span><span>Under $550k</span></div>
-      </article>
-      <article class="step sh">
-        <div class="who">Homebuilder</div><h3>The home gets a rich profile</h3>
-        <div class="rec"><b>Lot 14 · The Aspen</b><dl><dt>Rooms</dt><dd>3 bed, den with French doors</dd><dt>Yard</dt><dd>0.21 acre, fenced</dd><dt>Price</dt><dd>$529,000</dd></dl></div>
-      </article>
-      <article class="step sb">
-        <div class="who">Home seeker</div><h3>Finds a home that fits</h3>
-        <div class="bub"><small>Goodplace</small>Found one! The den has French doors, and the yard is fenced. Want to see it Saturday at 11?</div>
-        <div class="bub me"><small>You</small>Yes!</div>
-      </article>
-      <article class="step sh">
-        <div class="who">Homebuilder</div><h3>The tour and follow-up run themselves</h3>
-        <div class="rec"><b>New tour · Sat 11:00</b>Matched on yard and office. Pre-approved.</div>
-        <div class="oks"><span>Tour booked</span><span>CRM updated</span><span>Feedback in</span></div>
-      </article>
-      <div class="again">Feedback from every visit makes the next match better</div>
+  </section>
+
+  <section class="b-close">
+    <div class="wrap">
+      <h2>We're building Goodplace now <span>Come build it with us</span></h2>
+      <div class="k-cta" style="margin-top:0">
+        <button class="btn" type="button" id="closeJoin">Join the waitlist</button>
+        <a class="btn ghost" href="mailto:hello@getgoodplace.com?subject=Goodplace%20demo">Book a demo</a>
+      </div>
     </div>
-  </div>
-</section>
-
-<footer class="close on-dark"><div class="in">
-  <h2>We're building Goodplace now <span>Come build it with us</span></h2>
-  <div class="row">
-    <a class="btn bone" href="mailto:hello@getgoodplace.com?subject=Waitlist">Join the waitlist</a>
-    <a class="btn p" href="mailto:hello@getgoodplace.com?subject=Demo">Book a demo</a>
-  </div>
-  <div class="fine"><svg class="lockup" aria-label="Goodplace" xmlns="http://www.w3.org/2000/svg" viewBox="-0.00 -850.00 5698.15 996.00" role="img" aria-label="Goodplace"><g transform="translate(0.00 -850.00) scale(10.78543) translate(-10.00 -11.19)" fill="currentColor"><path fill-rule="evenodd" d="M51.71 11.62L51.82 11.69L52.35 12.07L52.86 12.51L55.71 15.03L58.54 17.52L58.57 17.54L61.43 20.06L64.28 22.57L64.30 22.59L65.65 23.77L66.38 24.67L66.76 25.77L66.75 26.93L66.50 27.73L65.88 29.09L65.86 29.12L65.86 29.12L65.86 29.13L65.20 30.63L65.19 30.66L65.19 30.66L65.18 30.68L65.18 30.68L65.18 30.69L64.55 32.20L64.53 32.23L63.91 33.77L63.89 33.76L63.88 33.79L63.90 33.80L63.30 35.38L63.28 35.43L62.73 36.92L62.72 36.97L62.62 37.24L62.54 37.60L62.50 37.98L62.56 38.69L62.62 38.88L62.98 39.50L63.11 39.65L63.69 40.07L63.88 40.15L64.57 40.29L64.83 40.28L65.44 40.16L65.66 40.06L65.89 39.95L66.13 39.80L66.19 39.77L66.19 39.77L67.58 38.96L67.63 38.93L68.94 38.20L68.98 38.17L70.36 37.42L70.41 37.40L71.81 36.66L71.85 36.64L73.20 35.96L73.24 35.93L74.65 35.24L74.69 35.23L75.26 34.96L76.38 34.65L77.54 34.73L78.96 35.48L81.43 37.66L84.28 40.16L84.29 40.17L87.13 42.68L87.15 42.69L88.69 44.04L89.13 44.52L89.19 44.59L89.79 45.83L89.89 46.23L90.00 47.07L90.00 62.47L89.80 63.62L89.23 64.63L88.35 65.39L87.27 65.81L86.01 65.82L85.30 65.69L85.26 65.69L85.25 65.69L85.20 65.68L83.38 65.39L83.33 65.38L81.54 65.12L81.50 65.12L79.68 64.88L79.66 64.88L79.61 64.87L77.81 64.67L77.78 64.66L77.77 64.66L77.75 64.66L76.49 64.53L76.12 64.54L75.74 64.58L75.07 64.81L74.89 64.92L74.37 65.40L74.26 65.57L73.99 66.23L73.95 66.43L73.98 67.14L74.03 67.33L74.36 67.98L74.61 68.29L74.89 68.56L75.94 69.38L75.98 69.41L77.27 70.45L77.31 70.48L78.67 71.60L78.70 71.63L80.00 72.73L80.04 72.77L80.04 72.77L81.38 73.94L81.41 73.97L82.70 75.12L82.73 75.15L83.96 76.29L84.00 76.32L85.28 77.54L85.31 77.57L86.51 78.75L86.54 78.77L87.78 80.02L87.79 80.03L87.80 80.04L87.84 80.08L88.97 81.25L89.01 81.28L89.07 81.36L89.71 82.32L90.00 83.69L90.00 86.50L89.95 87.09L89.94 87.13L89.55 88.22L88.81 89.12L87.45 89.83L87.22 89.89L86.37 90.00L57.72 90.00L56.58 89.80L55.56 89.23L54.80 88.35L54.45 87.53L54.28 86.95L54.27 86.90L54.26 86.87L54.26 86.88L53.82 85.41L53.81 85.38L53.34 83.91L53.32 83.84L53.32 83.84L53.31 83.82L52.83 82.39L52.83 82.38L52.82 82.38L52.81 82.34L52.30 80.90L52.29 80.87L52.28 80.86L51.98 80.04L51.82 79.72L51.61 79.40L51.10 78.89L50.94 78.78L50.26 78.53L50.07 78.50L49.35 78.55L49.09 78.63L48.71 78.81L48.70 78.82L48.08 79.46L47.77 79.88L47.44 80.56L47.40 80.62L47.40 80.63L46.70 81.96L46.67 82.00L46.01 83.23L45.98 83.27L45.26 84.55L45.24 84.59L44.52 85.81L44.52 85.81L44.49 85.86L43.75 87.08L43.73 87.13L43.00 88.29L42.97 88.33L42.97 88.33L42.96 88.35L42.95 88.35L42.94 88.38L42.89 88.46L42.84 88.52L42.77 88.61L42.77 88.61L42.76 88.60L42.09 89.31L41.06 89.84L40.04 90.00L13.50 90.00L12.91 89.95L12.87 89.94L11.78 89.55L10.88 88.81L10.17 87.44L10.11 87.22L10.00 86.36L10.00 77.89L10.20 76.74L10.77 75.73L12.00 74.79L13.54 74.09L13.58 74.07L13.58 74.07L15.27 73.28L15.27 73.27L15.30 73.26L16.97 72.44L16.98 72.46L17.01 72.44L17.00 72.43L18.62 71.60L18.63 71.60L18.67 71.58L18.67 71.58L20.27 70.74L20.27 70.74L20.32 70.70L21.93 69.83L21.95 69.82L21.96 69.81L21.97 69.81L23.55 68.91L23.58 68.89L24.72 68.23L25.00 68.02L25.29 67.75L25.70 67.18L25.78 66.98L25.91 66.29L25.91 66.08L25.74 65.39L25.65 65.21L25.21 64.65L25.05 64.52L24.41 64.19L24.02 64.09L23.64 64.04L22.36 63.99L22.31 63.99L20.60 63.91L20.56 63.91L18.77 63.80L18.73 63.79L17.02 63.66L17.02 63.66L16.96 63.66L15.27 63.51L15.22 63.49L15.22 63.50L13.47 63.32L13.47 63.31L13.42 63.31L13.00 63.26L11.89 62.93L10.95 62.24L10.30 61.28L10.00 59.89L10.00 46.95L10.05 46.36L10.07 46.26L10.61 44.93L10.85 44.59L11.40 43.96L12.86 42.69L12.86 42.68L15.71 40.17L18.57 37.66L18.59 37.68L18.59 37.68L18.57 37.66L21.43 35.14L22.87 33.88L23.86 33.27L25.00 33.03L26.15 33.19L27.41 33.94L27.42 33.94L27.46 33.97L28.67 35.05L28.72 35.09L29.98 36.17L30.05 36.23L30.05 36.23L31.30 37.28L31.32 37.29L31.33 37.30L32.61 38.34L32.61 38.34L32.66 38.38L33.89 39.34L33.93 39.37L33.94 39.38L34.18 39.56L34.49 39.75L34.84 39.91L35.54 40.07L35.74 40.07L36.44 39.92L36.62 39.84L37.20 39.42L37.33 39.27L37.68 38.64L37.76 38.41L37.83 37.78L37.81 37.55L37.77 37.29L37.69 36.95L37.68 36.91L37.36 35.41L37.35 35.36L37.03 33.80L37.02 33.75L36.74 32.22L36.73 32.17L36.48 30.69L36.47 30.64L36.23 29.08L36.23 29.08L36.22 29.03L36.00 27.50L36.00 27.48L35.99 27.43L35.81 25.98L35.80 25.93L35.65 24.56L35.72 23.40L36.17 22.33L36.78 21.63L38.57 20.06L38.58 20.05L41.43 17.54L44.29 15.03L44.29 15.03L47.14 12.51L47.65 12.06L48.15 11.70L48.24 11.64L49.32 11.22L50.49 11.19ZM49.83 45.48L48.77 45.54L48.43 45.58L47.38 45.75L47.06 45.83L46.03 46.12L45.72 46.23L44.73 46.64L44.42 46.79L43.49 47.30L43.21 47.48L42.34 48.10L42.08 48.31L41.28 49.02L41.04 49.26L40.34 50.05L40.13 50.31L39.51 51.18L39.33 51.47L38.81 52.40L38.67 52.70L38.26 53.69L38.15 54.01L37.85 55.03L37.78 55.36L37.60 56.41L37.56 56.74L37.51 57.80L37.51 58.14L37.56 59.20L37.60 59.54L37.78 60.59L37.85 60.92L38.15 61.94L38.26 62.26L38.67 63.24L38.81 63.55L39.33 64.48L39.51 64.76L40.13 65.63L40.34 65.89L41.04 66.69L41.28 66.93L42.08 67.64L42.34 67.85L43.21 68.46L43.49 68.64L44.43 69.16L44.73 69.30L45.71 69.71L46.03 69.82L47.06 70.12L47.38 70.19L48.43 70.37L48.77 70.41L49.83 70.47L50.17 70.47L51.23 70.41L51.57 70.37L52.62 70.19L52.94 70.12L53.97 69.82L54.29 69.71L55.27 69.30L55.57 69.16L56.51 68.64L56.79 68.46L57.66 67.85L57.92 67.64L58.72 66.93L58.96 66.69L59.66 65.89L59.87 65.63L60.49 64.76L60.67 64.48L61.19 63.55L61.33 63.24L61.74 62.26L61.85 61.94L62.15 60.92L62.22 60.59L62.40 59.54L62.44 59.20L62.49 58.14L62.49 57.80L62.44 56.74L62.40 56.41L62.22 55.36L62.15 55.03L61.85 54.01L61.74 53.69L61.33 52.70L61.19 52.40L60.67 51.47L60.49 51.18L59.87 50.31L59.66 50.05L58.96 49.26L58.72 49.02L57.92 48.31L57.66 48.10L56.79 47.48L56.51 47.30L55.58 46.79L55.27 46.64L54.28 46.23L53.97 46.12L52.94 45.83L52.62 45.75L51.57 45.58L51.23 45.54L50.17 45.48Z"></path><path d="M59.50 57.97L59.44 59.04L59.26 60.09L58.97 61.11L58.56 62.09L58.04 63.03L57.43 63.90L56.72 64.69L55.92 65.40L55.05 66.02L54.12 66.53L53.14 66.94L52.11 67.23L51.06 67.41L50.00 67.47L48.94 67.41L47.89 67.23L46.86 66.94L45.88 66.53L44.95 66.02L44.08 65.40L43.28 64.69L42.57 63.90L41.96 63.03L41.44 62.09L41.03 61.11L40.74 60.09L40.56 59.04L40.50 57.97L40.56 56.91L40.74 55.86L41.03 54.84L41.44 53.85L41.96 52.92L42.57 52.05L43.28 51.26L44.08 50.55L44.95 49.93L45.88 49.41L46.86 49.01L47.89 48.71L48.94 48.53L50.00 48.47L51.06 48.53L52.11 48.71L53.14 49.01L54.12 49.41L55.05 49.93L55.92 50.55L56.72 51.26L57.43 52.05L58.04 52.92L58.56 53.85L58.97 54.84L59.26 55.86L59.44 56.91Z"></path></g><path transform="translate(1062.83 0)" fill="currentColor" d="M304 14Q220 14 158.0 -28.0Q96 -70 63.0 -146.5Q30 -223 30 -325Q30 -400 48.5 -463.5Q67 -527 106.0 -574.5Q145 -622 203.5 -648.0Q262 -674 342 -674Q408 -674 457.0 -656.0Q506 -638 538.0 -605.5Q570 -573 584.5 -529.0Q599 -485 596 -433L460 -416Q462 -463 447.0 -493.0Q432 -523 404.0 -538.0Q376 -553 337 -553Q291 -553 256.0 -528.5Q221 -504 201.0 -455.0Q181 -406 181 -332Q181 -276 192.5 -233.5Q204 -191 226.0 -162.5Q248 -134 280.0 -119.0Q312 -104 351 -104Q393 -104 422.5 -119.5Q452 -135 468.0 -163.0Q484 -191 485 -229H375V-333H614V-214V0H512L515 -181H506Q500 -118 475.0 -74.5Q450 -31 407.0 -8.5Q364 14 304 14Z M920.0 14Q845.0 14 786.5 -16.5Q728.0 -47 695.5 -108.0Q663.0 -169 663.0 -262Q663.0 -357 697.0 -418.0Q731.0 -479 789.5 -509.0Q848.0 -539 921.0 -539Q997.0 -539 1055.0 -508.5Q1113.0 -478 1145.5 -416.5Q1178.0 -355 1178.0 -262Q1178.0 -166 1144.0 -105.0Q1110.0 -44 1051.5 -15.0Q993.0 14 920.0 14ZM923.0 -94Q958.0 -94 982.0 -113.0Q1006.0 -132 1019.0 -168.0Q1032.0 -204 1032.0 -254Q1032.0 -309 1018.0 -346.5Q1004.0 -384 978.5 -404.5Q953.0 -425 917.0 -425Q883.0 -425 858.5 -406.0Q834.0 -387 821.5 -350.5Q809.0 -314 809.0 -263Q809.0 -184 839.0 -139.0Q869.0 -94 923.0 -94Z M1474.0 14Q1399.0 14 1340.5 -16.5Q1282.0 -47 1249.5 -108.0Q1217.0 -169 1217.0 -262Q1217.0 -357 1251.0 -418.0Q1285.0 -479 1343.5 -509.0Q1402.0 -539 1475.0 -539Q1551.0 -539 1609.0 -508.5Q1667.0 -478 1699.5 -416.5Q1732.0 -355 1732.0 -262Q1732.0 -166 1698.0 -105.0Q1664.0 -44 1605.5 -15.0Q1547.0 14 1474.0 14ZM1477.0 -94Q1512.0 -94 1536.0 -113.0Q1560.0 -132 1573.0 -168.0Q1586.0 -204 1586.0 -254Q1586.0 -309 1572.0 -346.5Q1558.0 -384 1532.5 -404.5Q1507.0 -425 1471.0 -425Q1437.0 -425 1412.5 -406.0Q1388.0 -387 1375.5 -350.5Q1363.0 -314 1363.0 -263Q1363.0 -184 1393.0 -139.0Q1423.0 -94 1477.0 -94Z M1973.0 14Q1916.0 14 1870.5 -16.5Q1825.0 -47 1798.0 -109.0Q1771.0 -171 1771.0 -267Q1771.0 -358 1795.5 -418.5Q1820.0 -479 1864.0 -509.0Q1908.0 -539 1967.0 -539Q2015.0 -539 2051.0 -519.0Q2087.0 -499 2110.0 -456.5Q2133.0 -414 2142.0 -347H2151.0Q2146.0 -385 2141.0 -419.0Q2136.0 -453 2133.5 -484.0Q2131.0 -515 2131.0 -541V-695H2276.0L2275.0 -196L2276.0 0H2149.0L2152.0 -166H2144.0Q2133.0 -107 2110.0 -66.5Q2087.0 -26 2053.0 -6.0Q2019.0 14 1973.0 14ZM2020.0 -103Q2044.0 -103 2065.0 -114.0Q2086.0 -125 2100.5 -146.0Q2115.0 -167 2123.5 -195.0Q2132.0 -223 2132.0 -257V-264Q2132.0 -291 2126.5 -314.5Q2121.0 -338 2111.0 -357.0Q2101.0 -376 2087.0 -389.5Q2073.0 -403 2056.0 -410.0Q2039.0 -417 2020.0 -417Q1987.0 -417 1963.5 -395.5Q1940.0 -374 1928.5 -338.5Q1917.0 -303 1917.0 -258Q1917.0 -215 1929.0 -179.5Q1941.0 -144 1964.0 -123.5Q1987.0 -103 2020.0 -103Z M2342.0 146 2343.0 -327 2342.0 -525H2470.0L2467.0 -360H2474.0Q2486.0 -421 2509.0 -461.0Q2532.0 -501 2567.0 -520.0Q2602.0 -539 2649.0 -539Q2710.0 -539 2754.5 -508.0Q2799.0 -477 2822.5 -416.0Q2846.0 -355 2846.0 -265Q2846.0 -169 2820.0 -107.5Q2794.0 -46 2750.0 -16.0Q2706.0 14 2650.0 14Q2603.0 14 2567.5 -6.5Q2532.0 -27 2509.5 -68.0Q2487.0 -109 2478.0 -170H2468.0Q2474.0 -137 2478.0 -104.5Q2482.0 -72 2484.5 -41.5Q2487.0 -11 2487.0 17V146ZM2597.0 -106Q2632.0 -106 2654.5 -126.5Q2677.0 -147 2688.5 -182.5Q2700.0 -218 2700.0 -260Q2700.0 -304 2688.0 -339.0Q2676.0 -374 2653.5 -394.5Q2631.0 -415 2598.0 -415Q2574.0 -415 2553.5 -404.5Q2533.0 -394 2518.0 -374.5Q2503.0 -355 2494.5 -327.0Q2486.0 -299 2486.0 -263V-256Q2486.0 -229 2491.5 -206.0Q2497.0 -183 2507.0 -164.5Q2517.0 -146 2531.0 -133.0Q2545.0 -120 2562.0 -113.0Q2579.0 -106 2597.0 -106Z M2901.0 0V-695H3045.0V0Z M3250.0 14Q3209.0 14 3173.5 -0.5Q3138.0 -15 3115.5 -46.0Q3093.0 -77 3093.0 -129Q3093.0 -177 3111.5 -207.5Q3130.0 -238 3162.0 -256.0Q3194.0 -274 3232.0 -284.0Q3270.0 -294 3309.0 -301Q3362.0 -311 3388.5 -316.5Q3415.0 -322 3424.0 -330.5Q3433.0 -339 3433.0 -354Q3433.0 -388 3409.0 -405.5Q3385.0 -423 3346.0 -423Q3323.0 -423 3299.0 -414.5Q3275.0 -406 3259.5 -384.0Q3244.0 -362 3244.0 -323L3115.0 -334Q3115.0 -394 3135.5 -433.5Q3156.0 -473 3191.0 -496.0Q3226.0 -519 3268.0 -529.0Q3310.0 -539 3351.0 -539Q3425.0 -539 3474.5 -511.5Q3524.0 -484 3549.0 -431.0Q3574.0 -378 3574.0 -301V-206Q3574.0 -172 3574.0 -137.5Q3574.0 -103 3574.5 -68.5Q3575.0 -34 3575.0 0H3448.0Q3449.0 -38 3450.0 -77.0Q3451.0 -116 3451.0 -158H3445.0Q3440.0 -111 3414.0 -72.0Q3388.0 -33 3346.0 -9.5Q3304.0 14 3250.0 14ZM3306.0 -93Q3326.0 -93 3348.5 -101.5Q3371.0 -110 3390.0 -127.5Q3409.0 -145 3421.0 -173.5Q3433.0 -202 3433.0 -243L3434.0 -266L3460.0 -271Q3452.0 -257 3431.5 -249.0Q3411.0 -241 3386.0 -236.5Q3361.0 -232 3335.0 -227.0Q3309.0 -222 3287.0 -214.0Q3265.0 -206 3251.5 -191.5Q3238.0 -177 3238.0 -152Q3238.0 -124 3257.0 -108.5Q3276.0 -93 3306.0 -93Z M3883.0 14Q3815.0 14 3765.5 -7.0Q3716.0 -28 3684.0 -65.5Q3652.0 -103 3637.0 -152.0Q3622.0 -201 3622.0 -257Q3622.0 -314 3637.0 -364.5Q3652.0 -415 3683.0 -454.5Q3714.0 -494 3763.5 -516.5Q3813.0 -539 3881.0 -539Q3961.0 -539 4011.5 -508.5Q4062.0 -478 4083.0 -429.5Q4104.0 -381 4097.0 -325L3971.0 -314Q3972.0 -351 3961.0 -375.5Q3950.0 -400 3929.0 -412.5Q3908.0 -425 3878.0 -425Q3854.0 -425 3833.5 -416.0Q3813.0 -407 3798.0 -387.5Q3783.0 -368 3775.0 -337.5Q3767.0 -307 3767.0 -264Q3767.0 -209 3781.0 -171.5Q3795.0 -134 3821.5 -114.5Q3848.0 -95 3885.0 -95Q3925.0 -95 3946.5 -113.5Q3968.0 -132 3976.0 -160.5Q3984.0 -189 3980.0 -219L4113.0 -212Q4118.0 -167 4107.0 -126.5Q4096.0 -86 4068.0 -54.0Q4040.0 -22 3994.0 -4.0Q3948.0 14 3883.0 14Z M4406.0 14Q4335.0 14 4285.5 -7.0Q4236.0 -28 4205.0 -65.0Q4174.0 -102 4160.0 -150.0Q4146.0 -198 4146.0 -253Q4146.0 -310 4160.5 -361.5Q4175.0 -413 4205.0 -453.0Q4235.0 -493 4283.0 -516.0Q4331.0 -539 4396.0 -539Q4461.0 -539 4508.0 -516.5Q4555.0 -494 4583.5 -454.0Q4612.0 -414 4621.5 -360.5Q4631.0 -307 4622.0 -243L4235.0 -237V-318L4512.0 -324L4492.0 -277Q4497.0 -323 4488.0 -356.0Q4479.0 -389 4456.5 -406.5Q4434.0 -424 4396.0 -424Q4356.0 -424 4331.5 -403.5Q4307.0 -383 4296.0 -346.0Q4285.0 -309 4285.0 -260Q4285.0 -175 4315.5 -135.0Q4346.0 -95 4407.0 -95Q4435.0 -95 4453.5 -102.5Q4472.0 -110 4483.5 -123.5Q4495.0 -137 4499.5 -155.0Q4504.0 -173 4503.0 -194L4635.0 -186Q4637.0 -151 4626.5 -115.5Q4616.0 -80 4589.5 -51.0Q4563.0 -22 4517.5 -4.0Q4472.0 14 4406.0 14Z"></path></svg><span>hello@getgoodplace.com · &copy; 2026 Goodplace</span></div>
-</div></footer>
-
-<template id="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0.00 0.00 80.00 78.81" role="img" aria-label="Goodplace mark"><g transform="translate(0.00 0.00) scale(1.00000) translate(-10.00 -11.19)" fill="currentColor"><path fill-rule="evenodd" d="M51.71 11.62L51.82 11.69L52.35 12.07L52.86 12.51L55.71 15.03L58.54 17.52L58.57 17.54L61.43 20.06L64.28 22.57L64.30 22.59L65.65 23.77L66.38 24.67L66.76 25.77L66.75 26.93L66.50 27.73L65.88 29.09L65.86 29.12L65.86 29.12L65.86 29.13L65.20 30.63L65.19 30.66L65.19 30.66L65.18 30.68L65.18 30.68L65.18 30.69L64.55 32.20L64.53 32.23L63.91 33.77L63.89 33.76L63.88 33.79L63.90 33.80L63.30 35.38L63.28 35.43L62.73 36.92L62.72 36.97L62.62 37.24L62.54 37.60L62.50 37.98L62.56 38.69L62.62 38.88L62.98 39.50L63.11 39.65L63.69 40.07L63.88 40.15L64.57 40.29L64.83 40.28L65.44 40.16L65.66 40.06L65.89 39.95L66.13 39.80L66.19 39.77L66.19 39.77L67.58 38.96L67.63 38.93L68.94 38.20L68.98 38.17L70.36 37.42L70.41 37.40L71.81 36.66L71.85 36.64L73.20 35.96L73.24 35.93L74.65 35.24L74.69 35.23L75.26 34.96L76.38 34.65L77.54 34.73L78.96 35.48L81.43 37.66L84.28 40.16L84.29 40.17L87.13 42.68L87.15 42.69L88.69 44.04L89.13 44.52L89.19 44.59L89.79 45.83L89.89 46.23L90.00 47.07L90.00 62.47L89.80 63.62L89.23 64.63L88.35 65.39L87.27 65.81L86.01 65.82L85.30 65.69L85.26 65.69L85.25 65.69L85.20 65.68L83.38 65.39L83.33 65.38L81.54 65.12L81.50 65.12L79.68 64.88L79.66 64.88L79.61 64.87L77.81 64.67L77.78 64.66L77.77 64.66L77.75 64.66L76.49 64.53L76.12 64.54L75.74 64.58L75.07 64.81L74.89 64.92L74.37 65.40L74.26 65.57L73.99 66.23L73.95 66.43L73.98 67.14L74.03 67.33L74.36 67.98L74.61 68.29L74.89 68.56L75.94 69.38L75.98 69.41L77.27 70.45L77.31 70.48L78.67 71.60L78.70 71.63L80.00 72.73L80.04 72.77L80.04 72.77L81.38 73.94L81.41 73.97L82.70 75.12L82.73 75.15L83.96 76.29L84.00 76.32L85.28 77.54L85.31 77.57L86.51 78.75L86.54 78.77L87.78 80.02L87.79 80.03L87.80 80.04L87.84 80.08L88.97 81.25L89.01 81.28L89.07 81.36L89.71 82.32L90.00 83.69L90.00 86.50L89.95 87.09L89.94 87.13L89.55 88.22L88.81 89.12L87.45 89.83L87.22 89.89L86.37 90.00L57.72 90.00L56.58 89.80L55.56 89.23L54.80 88.35L54.45 87.53L54.28 86.95L54.27 86.90L54.26 86.87L54.26 86.88L53.82 85.41L53.81 85.38L53.34 83.91L53.32 83.84L53.32 83.84L53.31 83.82L52.83 82.39L52.83 82.38L52.82 82.38L52.81 82.34L52.30 80.90L52.29 80.87L52.28 80.86L51.98 80.04L51.82 79.72L51.61 79.40L51.10 78.89L50.94 78.78L50.26 78.53L50.07 78.50L49.35 78.55L49.09 78.63L48.71 78.81L48.70 78.82L48.08 79.46L47.77 79.88L47.44 80.56L47.40 80.62L47.40 80.63L46.70 81.96L46.67 82.00L46.01 83.23L45.98 83.27L45.26 84.55L45.24 84.59L44.52 85.81L44.52 85.81L44.49 85.86L43.75 87.08L43.73 87.13L43.00 88.29L42.97 88.33L42.97 88.33L42.96 88.35L42.95 88.35L42.94 88.38L42.89 88.46L42.84 88.52L42.77 88.61L42.77 88.61L42.76 88.60L42.09 89.31L41.06 89.84L40.04 90.00L13.50 90.00L12.91 89.95L12.87 89.94L11.78 89.55L10.88 88.81L10.17 87.44L10.11 87.22L10.00 86.36L10.00 77.89L10.20 76.74L10.77 75.73L12.00 74.79L13.54 74.09L13.58 74.07L13.58 74.07L15.27 73.28L15.27 73.27L15.30 73.26L16.97 72.44L16.98 72.46L17.01 72.44L17.00 72.43L18.62 71.60L18.63 71.60L18.67 71.58L18.67 71.58L20.27 70.74L20.27 70.74L20.32 70.70L21.93 69.83L21.95 69.82L21.96 69.81L21.97 69.81L23.55 68.91L23.58 68.89L24.72 68.23L25.00 68.02L25.29 67.75L25.70 67.18L25.78 66.98L25.91 66.29L25.91 66.08L25.74 65.39L25.65 65.21L25.21 64.65L25.05 64.52L24.41 64.19L24.02 64.09L23.64 64.04L22.36 63.99L22.31 63.99L20.60 63.91L20.56 63.91L18.77 63.80L18.73 63.79L17.02 63.66L17.02 63.66L16.96 63.66L15.27 63.51L15.22 63.49L15.22 63.50L13.47 63.32L13.47 63.31L13.42 63.31L13.00 63.26L11.89 62.93L10.95 62.24L10.30 61.28L10.00 59.89L10.00 46.95L10.05 46.36L10.07 46.26L10.61 44.93L10.85 44.59L11.40 43.96L12.86 42.69L12.86 42.68L15.71 40.17L18.57 37.66L18.59 37.68L18.59 37.68L18.57 37.66L21.43 35.14L22.87 33.88L23.86 33.27L25.00 33.03L26.15 33.19L27.41 33.94L27.42 33.94L27.46 33.97L28.67 35.05L28.72 35.09L29.98 36.17L30.05 36.23L30.05 36.23L31.30 37.28L31.32 37.29L31.33 37.30L32.61 38.34L32.61 38.34L32.66 38.38L33.89 39.34L33.93 39.37L33.94 39.38L34.18 39.56L34.49 39.75L34.84 39.91L35.54 40.07L35.74 40.07L36.44 39.92L36.62 39.84L37.20 39.42L37.33 39.27L37.68 38.64L37.76 38.41L37.83 37.78L37.81 37.55L37.77 37.29L37.69 36.95L37.68 36.91L37.36 35.41L37.35 35.36L37.03 33.80L37.02 33.75L36.74 32.22L36.73 32.17L36.48 30.69L36.47 30.64L36.23 29.08L36.23 29.08L36.22 29.03L36.00 27.50L36.00 27.48L35.99 27.43L35.81 25.98L35.80 25.93L35.65 24.56L35.72 23.40L36.17 22.33L36.78 21.63L38.57 20.06L38.58 20.05L41.43 17.54L44.29 15.03L44.29 15.03L47.14 12.51L47.65 12.06L48.15 11.70L48.24 11.64L49.32 11.22L50.49 11.19ZM49.83 45.48L48.77 45.54L48.43 45.58L47.38 45.75L47.06 45.83L46.03 46.12L45.72 46.23L44.73 46.64L44.42 46.79L43.49 47.30L43.21 47.48L42.34 48.10L42.08 48.31L41.28 49.02L41.04 49.26L40.34 50.05L40.13 50.31L39.51 51.18L39.33 51.47L38.81 52.40L38.67 52.70L38.26 53.69L38.15 54.01L37.85 55.03L37.78 55.36L37.60 56.41L37.56 56.74L37.51 57.80L37.51 58.14L37.56 59.20L37.60 59.54L37.78 60.59L37.85 60.92L38.15 61.94L38.26 62.26L38.67 63.24L38.81 63.55L39.33 64.48L39.51 64.76L40.13 65.63L40.34 65.89L41.04 66.69L41.28 66.93L42.08 67.64L42.34 67.85L43.21 68.46L43.49 68.64L44.43 69.16L44.73 69.30L45.71 69.71L46.03 69.82L47.06 70.12L47.38 70.19L48.43 70.37L48.77 70.41L49.83 70.47L50.17 70.47L51.23 70.41L51.57 70.37L52.62 70.19L52.94 70.12L53.97 69.82L54.29 69.71L55.27 69.30L55.57 69.16L56.51 68.64L56.79 68.46L57.66 67.85L57.92 67.64L58.72 66.93L58.96 66.69L59.66 65.89L59.87 65.63L60.49 64.76L60.67 64.48L61.19 63.55L61.33 63.24L61.74 62.26L61.85 61.94L62.15 60.92L62.22 60.59L62.40 59.54L62.44 59.20L62.49 58.14L62.49 57.80L62.44 56.74L62.40 56.41L62.22 55.36L62.15 55.03L61.85 54.01L61.74 53.69L61.33 52.70L61.19 52.40L60.67 51.47L60.49 51.18L59.87 50.31L59.66 50.05L58.96 49.26L58.72 49.02L57.92 48.31L57.66 48.10L56.79 47.48L56.51 47.30L55.58 46.79L55.27 46.64L54.28 46.23L53.97 46.12L52.94 45.83L52.62 45.75L51.57 45.58L51.23 45.54L50.17 45.48Z"></path><path d="M59.50 57.97L59.44 59.04L59.26 60.09L58.97 61.11L58.56 62.09L58.04 63.03L57.43 63.90L56.72 64.69L55.92 65.40L55.05 66.02L54.12 66.53L53.14 66.94L52.11 67.23L51.06 67.41L50.00 67.47L48.94 67.41L47.89 67.23L46.86 66.94L45.88 66.53L44.95 66.02L44.08 65.40L43.28 64.69L42.57 63.90L41.96 63.03L41.44 62.09L41.03 61.11L40.74 60.09L40.56 59.04L40.50 57.97L40.56 56.91L40.74 55.86L41.03 54.84L41.44 53.85L41.96 52.92L42.57 52.05L43.28 51.26L44.08 50.55L44.95 49.93L45.88 49.41L46.86 49.01L47.89 48.71L48.94 48.53L50.00 48.47L51.06 48.53L52.11 48.71L53.14 49.01L54.12 49.41L55.05 49.93L55.92 50.55L56.72 51.26L57.43 52.05L58.04 52.92L58.56 53.85L58.97 54.84L59.26 55.86L59.44 56.91Z"></path></g></svg></template>
+    <div aria-hidden="true"><svg class="houses" aria-hidden="true" viewBox="0 86 1140 220" xmlns="http://www.w3.org/2000/svg"><g transform="translate(-20.0 0)"><rect x="64.8" y="217.5" width="10.5" height="82.5" rx="4.5" fill="#234536" /><circle cx="70" cy="198" r="48" fill="#234536" /></g><g transform="translate(26.0 0)"><path d="M121.9,300 Q110,300 110,288.1 L110,179.3 Q110,167.4 119.1,159.7 L185.9,103.7 Q195,96 204.1,103.7 L270.9,159.7 Q280,167.4 280,179.3 L280,288.1 Q280,300 268.1,300 Z" fill="#C4462A"/><circle cx="195" cy="146" r="11.9" fill="#F3DCC2" /><circle cx="195" cy="146" r="7.9" fill="#C4462A" /><rect x="135.5" y="183.3" width="34" height="31.8" rx="9.5" fill="#F3DCC2" /><rect x="135.5" y="236.4" width="34" height="31.8" rx="9.5" fill="#F3DCC2" /><rect x="220.5" y="183.3" width="34" height="31.8" rx="9.5" fill="#F3DCC2" /><rect x="220.5" y="236.4" width="34" height="31.8" rx="9.5" fill="#F3DCC2" /><path d="M178,300 V269.3 A17,17 0 0 1 212,269.3 V300 Z" fill="#1B2620"/><path d="M174.6,249.6 Q171.2,249.6 174,247.6 L192.2,234.6 Q195,232.6 197.8,234.6 L216,247.6 Q218.8,249.6 215.4,249.6 Z" fill="#F3DCC2"/></g><g transform="translate(342.0 0)"><path d="M10,300 A30,30 0 0 1 70,300 Z" fill="#234536"/><path d="M64,300 A20,20 0 0 1 104,300 Z" fill="#2D5444"/><path d="M130,300 C134,272 126,251 130,230" fill="none" stroke="#234536" stroke-width="3" stroke-linecap="round"/><path d="M0,0 Q6.8,-9 0,-18 Q-6.8,-9 0,0 Z" transform="translate(130 277.6) rotate(50)" fill="#234536" /><g transform="translate(130 230)" fill="#8DB3D3"><path d="M0,0 C-8.5,-4.2 -6.8,-13.8 0,-15 C3.7,-14.2 4.1,-4.5 0,0 Z" transform="rotate(0)"/><path d="M0,0 C-8.5,-4.2 -6.8,-13.8 0,-15 C3.7,-14.2 4.1,-4.5 0,0 Z" transform="rotate(72)"/><path d="M0,0 C-8.5,-4.2 -6.8,-13.8 0,-15 C3.7,-14.2 4.1,-4.5 0,0 Z" transform="rotate(144)"/><path d="M0,0 C-8.5,-4.2 -6.8,-13.8 0,-15 C3.7,-14.2 4.1,-4.5 0,0 Z" transform="rotate(216)"/><path d="M0,0 C-8.5,-4.2 -6.8,-13.8 0,-15 C3.7,-14.2 4.1,-4.5 0,0 Z" transform="rotate(288)"/></g><circle cx="130" cy="230" r="4.5" fill="#FBF5EC" /><circle cx="130" cy="230" r="3.1" fill="#8DB3D3" /><path d="M170,300 C174,280 166,265 170,250" fill="none" stroke="#234536" stroke-width="3" stroke-linecap="round"/><path d="M0,0 Q5.5,-7.2 0,-14.4 Q-5.5,-7.2 0,0 Z" transform="translate(170 284) rotate(-50)" fill="#234536" /><g transform="translate(170 250)" fill="#C4462A"><path d="M0,0 C-6.8,-3.4 -5.4,-11 0,-12 C2.9,-11.4 3.3,-3.6 0,0 Z" transform="rotate(0)"/><path d="M0,0 C-6.8,-3.4 -5.4,-11 0,-12 C2.9,-11.4 3.3,-3.6 0,0 Z" transform="rotate(72)"/><path d="M0,0 C-6.8,-3.4 -5.4,-11 0,-12 C2.9,-11.4 3.3,-3.6 0,0 Z" transform="rotate(144)"/><path d="M0,0 C-6.8,-3.4 -5.4,-11 0,-12 C2.9,-11.4 3.3,-3.6 0,0 Z" transform="rotate(216)"/><path d="M0,0 C-6.8,-3.4 -5.4,-11 0,-12 C2.9,-11.4 3.3,-3.6 0,0 Z" transform="rotate(288)"/></g><circle cx="170" cy="250" r="3.6" fill="#FBF5EC" /><circle cx="170" cy="250" r="2.5" fill="#C4462A" /><path d="M205,300 C209,267.2 201,242.6 205,218" fill="none" stroke="#234536" stroke-width="3" stroke-linecap="round"/><path d="M0,0 Q6.4,-8.4 0,-16.8 Q-6.4,-8.4 0,0 Z" transform="translate(205 273.8) rotate(50)" fill="#234536" /><g transform="translate(205 218)" fill="#F3DCC2"><path d="M0,0 C-7.9,-3.9 -6.4,-12.9 0,-14 C3.4,-13.3 3.8,-4.2 0,0 Z" transform="rotate(0)"/><path d="M0,0 C-7.9,-3.9 -6.4,-12.9 0,-14 C3.4,-13.3 3.8,-4.2 0,0 Z" transform="rotate(72)"/><path d="M0,0 C-7.9,-3.9 -6.4,-12.9 0,-14 C3.4,-13.3 3.8,-4.2 0,0 Z" transform="rotate(144)"/><path d="M0,0 C-7.9,-3.9 -6.4,-12.9 0,-14 C3.4,-13.3 3.8,-4.2 0,0 Z" transform="rotate(216)"/><path d="M0,0 C-7.9,-3.9 -6.4,-12.9 0,-14 C3.4,-13.3 3.8,-4.2 0,0 Z" transform="rotate(288)"/></g><circle cx="205" cy="218" r="4.2" fill="#234536" /><circle cx="205" cy="218" r="2.9" fill="#F3DCC2" /></g><g transform="translate(-232.0 0)"><path d="M867.2,300 Q860,300 863.1,293.5 L901.9,212 Q905,205.5 908.1,212 L946.9,293.5 Q950,300 942.8,300 Z" fill="#C4462A"/><circle cx="905" cy="245.2" r="7.2" fill="#F3DCC2" /><circle cx="905" cy="245.2" r="4.8" fill="#C4462A" /><path d="M893.3,300 V279.6 A11.7,11.7 0 0 1 916.7,279.6 V300 Z" fill="#1B2620"/></g><g transform="translate(454.0 0)"><path d="M324.7,300 Q320,300 320,295.3 L320,154.7 Q320,150 322.6,146.1 L356.4,95.9 Q359,92 361.6,95.9 L395.4,146.1 Q398,150 398,154.7 L398,295.3 Q398,300 393.3,300 Z" fill="#234536"/><circle cx="359" cy="132.6" r="7.8" fill="#F3DCC2" /><circle cx="359" cy="132.6" r="5.1" fill="#234536" /><rect x="337.2" y="177" width="43.7" height="30" rx="9" fill="#F3DCC2" /><path d="M348.1,300 V256.9 A10.9,10.9 0 0 1 369.9,256.9 V300 Z" fill="#C4462A"/><path d="M402.2,300 Q398,300 398,295.8 L398,122.2 Q398,118 400.3,114.5 L430.7,69.5 Q433,66 435.3,69.5 L465.7,114.5 Q468,118 468,122.2 L468,295.8 Q468,300 463.8,300 Z" fill="#8DB3D3"/><circle cx="433" cy="102.4" r="7" fill="#FBF5EC" /><circle cx="433" cy="102.4" r="4.6" fill="#8DB3D3" /><rect x="413.4" y="150.8" width="39.2" height="36.4" rx="10.9" fill="#FBF5EC" /><path d="M423.2,300 V244.3 A9.8,9.8 0 0 1 442.8,244.3 V300 Z" fill="#1B2620"/><path d="M472.9,300 Q468,300 468,295.1 L468,166.9 Q468,162 470.6,157.8 L506.4,100.2 Q509,96 511.6,100.2 L547.4,157.8 Q550,162 550,166.9 L550,295.1 Q550,300 545.1,300 Z" fill="#FBF5EC"/><circle cx="509" cy="142.2" r="8.2" fill="#C4462A" /><circle cx="509" cy="142.2" r="5.4" fill="#FBF5EC" /><rect x="486" y="186.8" width="45.9" height="27.6" rx="8.3" fill="#C4462A" /><path d="M497.5,300 V261.8 A11.5,11.5 0 0 1 520.5,261.8 V300 Z" fill="#C4462A"/></g><g transform="translate(1020.0 0)"><rect x="64.8" y="217.5" width="10.5" height="82.5" rx="4.5" fill="#234536" /><circle cx="70" cy="198" r="48" fill="#234536" /></g></svg></div>
+  </section>
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="/"><svg aria-hidden="true"><use href="#mark"/></svg>Goodplace</a>
+      <a class="mail" href="mailto:hello@getgoodplace.com">hello@getgoodplace.com</a>
+      <a class="side-door" href="/builders"><span>For homebuilders</span> →</a>
+      <button class="motion-toggle" id="motionBtn" type="button" aria-pressed="false">Pause motion</button>
+    </div>
+  </footer>
+</main>
 
 <script>
-const stage = document.getElementById('stage');
-const markSVG = document.getElementById('mark').innerHTML;
-const NS = 'http://www.w3.org/2000/svg';
-let pts = [];
+const SOFT = {"outer": [[1.71, -46.38], [1.82, -46.31], [2.35, -45.93], [2.86, -45.49], [3.216, -45.175], [3.572, -44.86], [3.929, -44.545], [4.285, -44.23], [4.641, -43.915], [4.998, -43.6], [5.354, -43.285], [5.71, -42.97], [6.064, -42.659], [6.418, -42.347], [6.771, -42.036], [7.125, -41.725], [7.479, -41.414], [7.832, -41.103], [8.186, -40.791], [8.54, -40.48], [8.57, -40.46], [8.928, -40.145], [9.285, -39.83], [9.643, -39.515], [10.0, -39.2], [10.357, -38.885], [10.715, -38.57], [11.072, -38.255], [11.43, -37.94], [11.786, -37.626], [12.143, -37.312], [12.499, -36.999], [12.855, -36.685], [13.211, -36.371], [13.568, -36.057], [13.924, -35.744], [14.28, -35.43], [14.3, -35.41], [14.75, -35.017], [15.2, -34.623], [15.65, -34.23], [16.015, -33.78], [16.38, -33.33], [16.57, -32.78], [16.76, -32.23], [16.755, -31.65], [16.75, -31.07], [16.5, -30.27], [16.293, -29.817], [16.087, -29.363], [15.88, -28.91], [15.86, -28.88], [15.86, -28.88], [15.86, -28.87], [15.64, -28.37], [15.42, -27.87], [15.2, -27.37], [15.19, -27.34], [15.19, -27.34], [15.18, -27.32], [15.18, -27.32], [15.18, -27.31], [14.97, -26.807], [14.76, -26.303], [14.55, -25.8], [14.53, -25.77], [14.323, -25.257], [14.117, -24.743], [13.91, -24.23], [13.89, -24.24], [13.88, -24.21], [13.9, -24.2], [13.7, -23.673], [13.5, -23.147], [13.3, -22.62], [13.28, -22.57], [13.097, -22.073], [12.913, -21.577], [12.73, -21.08], [12.72, -21.03], [12.62, -20.76], [12.54, -20.4], [12.5, -20.02], [12.56, -19.31], [12.62, -19.12], [12.98, -18.5], [13.11, -18.35], [13.69, -17.93], [13.88, -17.85], [14.57, -17.71], [14.83, -17.72], [15.44, -17.84], [15.66, -17.94], [15.89, -18.05], [16.13, -18.2], [16.19, -18.23], [16.19, -18.23], [16.653, -18.5], [17.117, -18.77], [17.58, -19.04], [17.63, -19.07], [18.067, -19.313], [18.503, -19.557], [18.94, -19.8], [18.98, -19.83], [19.44, -20.08], [19.9, -20.33], [20.36, -20.58], [20.41, -20.6], [20.877, -20.847], [21.343, -21.093], [21.81, -21.34], [21.85, -21.36], [22.3, -21.587], [22.75, -21.813], [23.2, -22.04], [23.24, -22.07], [23.71, -22.3], [24.18, -22.53], [24.65, -22.76], [24.69, -22.77], [25.26, -23.04], [25.82, -23.195], [26.38, -23.35], [26.96, -23.31], [27.54, -23.27], [28.013, -23.02], [28.487, -22.77], [28.96, -22.52], [29.313, -22.209], [29.666, -21.897], [30.019, -21.586], [30.371, -21.274], [30.724, -20.963], [31.077, -20.651], [31.43, -20.34], [31.786, -20.028], [32.143, -19.715], [32.499, -19.403], [32.855, -19.09], [33.211, -18.778], [33.568, -18.465], [33.924, -18.153], [34.28, -17.84], [34.29, -17.83], [34.645, -17.516], [35.0, -17.203], [35.355, -16.889], [35.71, -16.575], [36.065, -16.261], [36.42, -15.947], [36.775, -15.634], [37.13, -15.32], [37.15, -15.31], [37.535, -14.973], [37.92, -14.635], [38.305, -14.298], [38.69, -13.96], [39.13, -13.48], [39.19, -13.41], [39.39, -12.997], [39.59, -12.583], [39.79, -12.17], [39.89, -11.77], [40.0, -10.93], [40.0, -10.477], [40.0, -10.024], [40.0, -9.571], [40.0, -9.118], [40.0, -8.665], [40.0, -8.212], [40.0, -7.759], [40.0, -7.306], [40.0, -6.854], [40.0, -6.401], [40.0, -5.948], [40.0, -5.495], [40.0, -5.042], [40.0, -4.589], [40.0, -4.136], [40.0, -3.683], [40.0, -3.23], [40.0, -2.777], [40.0, -2.324], [40.0, -1.871], [40.0, -1.418], [40.0, -0.965], [40.0, -0.512], [40.0, -0.059], [40.0, 0.394], [40.0, 0.846], [40.0, 1.299], [40.0, 1.752], [40.0, 2.205], [40.0, 2.658], [40.0, 3.111], [40.0, 3.564], [40.0, 4.017], [40.0, 4.47], [39.9, 5.045], [39.8, 5.62], [39.515, 6.125], [39.23, 6.63], [38.79, 7.01], [38.35, 7.39], [37.81, 7.6], [37.27, 7.81], [36.64, 7.815], [36.01, 7.82], [35.3, 7.69], [35.26, 7.69], [35.25, 7.69], [35.2, 7.68], [34.745, 7.608], [34.29, 7.535], [33.835, 7.463], [33.38, 7.39], [33.33, 7.38], [32.883, 7.315], [32.435, 7.25], [31.988, 7.185], [31.54, 7.12], [31.5, 7.12], [31.045, 7.06], [30.59, 7.0], [30.135, 6.94], [29.68, 6.88], [29.66, 6.88], [29.61, 6.87], [29.16, 6.82], [28.71, 6.77], [28.26, 6.72], [27.81, 6.67], [27.78, 6.66], [27.77, 6.66], [27.75, 6.66], [27.12, 6.595], [26.49, 6.53], [26.12, 6.54], [25.74, 6.58], [25.07, 6.81], [24.89, 6.92], [24.37, 7.4], [24.26, 7.57], [23.99, 8.23], [23.95, 8.43], [23.98, 9.14], [24.03, 9.33], [24.36, 9.98], [24.61, 10.29], [24.89, 10.56], [25.415, 10.97], [25.94, 11.38], [25.98, 11.41], [26.41, 11.757], [26.84, 12.103], [27.27, 12.45], [27.31, 12.48], [27.763, 12.853], [28.217, 13.227], [28.67, 13.6], [28.7, 13.63], [29.133, 13.997], [29.567, 14.363], [30.0, 14.73], [30.04, 14.77], [30.04, 14.77], [30.487, 15.16], [30.933, 15.55], [31.38, 15.94], [31.41, 15.97], [31.84, 16.353], [32.27, 16.737], [32.7, 17.12], [32.73, 17.15], [33.14, 17.53], [33.55, 17.91], [33.96, 18.29], [34.0, 18.32], [34.427, 18.727], [34.853, 19.133], [35.28, 19.54], [35.31, 19.57], [35.71, 19.963], [36.11, 20.357], [36.51, 20.75], [36.54, 20.77], [36.953, 21.187], [37.367, 21.603], [37.78, 22.02], [37.79, 22.03], [37.8, 22.04], [37.84, 22.08], [38.217, 22.47], [38.593, 22.86], [38.97, 23.25], [39.01, 23.28], [39.07, 23.36], [39.39, 23.84], [39.71, 24.32], [39.807, 24.777], [39.903, 25.233], [40.0, 25.69], [40.0, 26.158], [40.0, 26.627], [40.0, 27.095], [40.0, 27.563], [40.0, 28.032], [40.0, 28.5], [39.95, 29.09], [39.94, 29.13], [39.745, 29.675], [39.55, 30.22], [39.18, 30.67], [38.81, 31.12], [38.357, 31.357], [37.903, 31.593], [37.45, 31.83], [37.22, 31.89], [36.37, 32.0], [35.915, 32.0], [35.46, 32.0], [35.006, 32.0], [34.551, 32.0], [34.096, 32.0], [33.641, 32.0], [33.187, 32.0], [32.732, 32.0], [32.277, 32.0], [31.822, 32.0], [31.368, 32.0], [30.913, 32.0], [30.458, 32.0], [30.003, 32.0], [29.549, 32.0], [29.094, 32.0], [28.639, 32.0], [28.184, 32.0], [27.73, 32.0], [27.275, 32.0], [26.82, 32.0], [26.365, 32.0], [25.91, 32.0], [25.456, 32.0], [25.001, 32.0], [24.546, 32.0], [24.091, 32.0], [23.637, 32.0], [23.182, 32.0], [22.727, 32.0], [22.272, 32.0], [21.818, 32.0], [21.363, 32.0], [20.908, 32.0], [20.453, 32.0], [19.999, 32.0], [19.544, 32.0], [19.089, 32.0], [18.634, 32.0], [18.18, 32.0], [17.725, 32.0], [17.27, 32.0], [16.815, 32.0], [16.36, 32.0], [15.906, 32.0], [15.451, 32.0], [14.996, 32.0], [14.541, 32.0], [14.087, 32.0], [13.632, 32.0], [13.177, 32.0], [12.722, 32.0], [12.268, 32.0], [11.813, 32.0], [11.358, 32.0], [10.903, 32.0], [10.449, 32.0], [9.994, 32.0], [9.539, 32.0], [9.084, 32.0], [8.63, 32.0], [8.175, 32.0], [7.72, 32.0], [7.15, 31.9], [6.58, 31.8], [6.07, 31.515], [5.56, 31.23], [5.18, 30.79], [4.8, 30.35], [4.45, 29.53], [4.28, 28.95], [4.27, 28.9], [4.26, 28.87], [4.26, 28.88], [4.113, 28.39], [3.967, 27.9], [3.82, 27.41], [3.81, 27.38], [3.653, 26.89], [3.497, 26.4], [3.34, 25.91], [3.32, 25.84], [3.32, 25.84], [3.31, 25.82], [3.15, 25.343], [2.99, 24.867], [2.83, 24.39], [2.83, 24.38], [2.82, 24.38], [2.81, 24.34], [2.64, 23.86], [2.47, 23.38], [2.3, 22.9], [2.29, 22.87], [2.28, 22.86], [1.98, 22.04], [1.82, 21.72], [1.61, 21.4], [1.1, 20.89], [0.94, 20.78], [0.26, 20.53], [0.07, 20.5], [-0.65, 20.55], [-0.91, 20.63], [-1.29, 20.81], [-1.3, 20.82], [-1.92, 21.46], [-2.23, 21.88], [-2.56, 22.56], [-2.6, 22.62], [-2.6, 22.63], [-2.833, 23.073], [-3.067, 23.517], [-3.3, 23.96], [-3.33, 24.0], [-3.55, 24.41], [-3.77, 24.82], [-3.99, 25.23], [-4.02, 25.27], [-4.26, 25.697], [-4.5, 26.123], [-4.74, 26.55], [-4.76, 26.59], [-5.0, 26.997], [-5.24, 27.403], [-5.48, 27.81], [-5.48, 27.81], [-5.51, 27.86], [-5.757, 28.267], [-6.003, 28.673], [-6.25, 29.08], [-6.27, 29.13], [-6.513, 29.517], [-6.757, 29.903], [-7.0, 30.29], [-7.03, 30.33], [-7.03, 30.33], [-7.04, 30.35], [-7.05, 30.35], [-7.06, 30.38], [-7.11, 30.46], [-7.16, 30.52], [-7.23, 30.61], [-7.23, 30.61], [-7.24, 30.6], [-7.575, 30.955], [-7.91, 31.31], [-8.425, 31.575], [-8.94, 31.84], [-9.45, 31.92], [-9.96, 32.0], [-10.418, 32.0], [-10.875, 32.0], [-11.333, 32.0], [-11.79, 32.0], [-12.248, 32.0], [-12.706, 32.0], [-13.163, 32.0], [-13.621, 32.0], [-14.078, 32.0], [-14.536, 32.0], [-14.993, 32.0], [-15.451, 32.0], [-15.909, 32.0], [-16.366, 32.0], [-16.824, 32.0], [-17.281, 32.0], [-17.739, 32.0], [-18.197, 32.0], [-18.654, 32.0], [-19.112, 32.0], [-19.569, 32.0], [-20.027, 32.0], [-20.484, 32.0], [-20.942, 32.0], [-21.4, 32.0], [-21.857, 32.0], [-22.315, 32.0], [-22.772, 32.0], [-23.23, 32.0], [-23.688, 32.0], [-24.145, 32.0], [-24.603, 32.0], [-25.06, 32.0], [-25.518, 32.0], [-25.976, 32.0], [-26.433, 32.0], [-26.891, 32.0], [-27.348, 32.0], [-27.806, 32.0], [-28.263, 32.0], [-28.721, 32.0], [-29.179, 32.0], [-29.636, 32.0], [-30.094, 32.0], [-30.551, 32.0], [-31.009, 32.0], [-31.467, 32.0], [-31.924, 32.0], [-32.382, 32.0], [-32.839, 32.0], [-33.297, 32.0], [-33.754, 32.0], [-34.212, 32.0], [-34.67, 32.0], [-35.127, 32.0], [-35.585, 32.0], [-36.042, 32.0], [-36.5, 32.0], [-37.09, 31.95], [-37.13, 31.94], [-37.675, 31.745], [-38.22, 31.55], [-38.67, 31.18], [-39.12, 30.81], [-39.357, 30.353], [-39.593, 29.897], [-39.83, 29.44], [-39.89, 29.22], [-40.0, 28.36], [-40.0, 27.889], [-40.0, 27.419], [-40.0, 26.948], [-40.0, 26.478], [-40.0, 26.007], [-40.0, 25.537], [-40.0, 25.066], [-40.0, 24.596], [-40.0, 24.125], [-40.0, 23.654], [-40.0, 23.184], [-40.0, 22.713], [-40.0, 22.243], [-40.0, 21.772], [-40.0, 21.302], [-40.0, 20.831], [-40.0, 20.361], [-40.0, 19.89], [-39.9, 19.315], [-39.8, 18.74], [-39.515, 18.235], [-39.23, 17.73], [-38.82, 17.417], [-38.41, 17.103], [-38.0, 16.79], [-37.487, 16.557], [-36.973, 16.323], [-36.46, 16.09], [-36.42, 16.07], [-36.42, 16.07], [-35.998, 15.872], [-35.575, 15.675], [-35.153, 15.477], [-34.73, 15.28], [-34.73, 15.27], [-34.7, 15.26], [-34.282, 15.055], [-33.865, 14.85], [-33.448, 14.645], [-33.03, 14.44], [-33.02, 14.46], [-32.99, 14.44], [-33.0, 14.43], [-32.595, 14.223], [-32.19, 14.015], [-31.785, 13.807], [-31.38, 13.6], [-31.37, 13.6], [-31.33, 13.58], [-31.33, 13.58], [-30.93, 13.37], [-30.53, 13.16], [-30.13, 12.95], [-29.73, 12.74], [-29.73, 12.74], [-29.68, 12.7], [-29.277, 12.483], [-28.875, 12.265], [-28.473, 12.047], [-28.07, 11.83], [-28.05, 11.82], [-28.04, 11.81], [-28.03, 11.81], [-27.635, 11.585], [-27.24, 11.36], [-26.845, 11.135], [-26.45, 10.91], [-26.42, 10.89], [-25.85, 10.56], [-25.28, 10.23], [-25.0, 10.02], [-24.71, 9.75], [-24.3, 9.18], [-24.22, 8.98], [-24.09, 8.29], [-24.09, 8.08], [-24.26, 7.39], [-24.35, 7.21], [-24.79, 6.65], [-24.95, 6.52], [-25.59, 6.19], [-25.98, 6.09], [-26.36, 6.04], [-27.0, 6.015], [-27.64, 5.99], [-27.69, 5.99], [-28.26, 5.963], [-28.83, 5.937], [-29.4, 5.91], [-29.44, 5.91], [-30.037, 5.873], [-30.633, 5.837], [-31.23, 5.8], [-31.27, 5.79], [-31.84, 5.747], [-32.41, 5.703], [-32.98, 5.66], [-32.98, 5.66], [-33.04, 5.66], [-33.603, 5.61], [-34.167, 5.56], [-34.73, 5.51], [-34.78, 5.49], [-34.78, 5.5], [-35.363, 5.44], [-35.947, 5.38], [-36.53, 5.32], [-36.53, 5.31], [-36.58, 5.31], [-37.0, 5.26], [-37.555, 5.095], [-38.11, 4.93], [-38.58, 4.585], [-39.05, 4.24], [-39.375, 3.76], [-39.7, 3.28], [-39.8, 2.817], [-39.9, 2.353], [-40.0, 1.89], [-40.0, 1.428], [-40.0, 0.966], [-40.0, 0.504], [-40.0, 0.041], [-40.0, -0.421], [-40.0, -0.883], [-40.0, -1.345], [-40.0, -1.807], [-40.0, -2.269], [-40.0, -2.731], [-40.0, -3.194], [-40.0, -3.656], [-40.0, -4.118], [-40.0, -4.58], [-40.0, -5.042], [-40.0, -5.504], [-40.0, -5.966], [-40.0, -6.429], [-40.0, -6.891], [-40.0, -7.353], [-40.0, -7.815], [-40.0, -8.277], [-40.0, -8.739], [-40.0, -9.201], [-40.0, -9.664], [-40.0, -10.126], [-40.0, -10.588], [-40.0, -11.05], [-39.95, -11.64], [-39.93, -11.74], [-39.75, -12.183], [-39.57, -12.627], [-39.39, -13.07], [-39.15, -13.41], [-38.6, -14.04], [-38.235, -14.357], [-37.87, -14.675], [-37.505, -14.993], [-37.14, -15.31], [-37.14, -15.32], [-36.784, -15.634], [-36.428, -15.947], [-36.071, -16.261], [-35.715, -16.575], [-35.359, -16.889], [-35.002, -17.203], [-34.646, -17.516], [-34.29, -17.83], [-33.932, -18.144], [-33.575, -18.457], [-33.218, -18.771], [-32.86, -19.085], [-32.502, -19.399], [-32.145, -19.713], [-31.788, -20.026], [-31.43, -20.34], [-31.41, -20.32], [-31.41, -20.32], [-31.43, -20.34], [-31.072, -20.655], [-30.715, -20.97], [-30.358, -21.285], [-30.0, -21.6], [-29.642, -21.915], [-29.285, -22.23], [-28.928, -22.545], [-28.57, -22.86], [-28.21, -23.175], [-27.85, -23.49], [-27.49, -23.805], [-27.13, -24.12], [-26.635, -24.425], [-26.14, -24.73], [-25.57, -24.85], [-25.0, -24.97], [-24.425, -24.89], [-23.85, -24.81], [-23.43, -24.56], [-23.01, -24.31], [-22.59, -24.06], [-22.58, -24.06], [-22.54, -24.03], [-22.137, -23.67], [-21.733, -23.31], [-21.33, -22.95], [-21.28, -22.91], [-20.86, -22.55], [-20.44, -22.19], [-20.02, -21.83], [-19.95, -21.77], [-19.95, -21.77], [-19.533, -21.42], [-19.117, -21.07], [-18.7, -20.72], [-18.68, -20.71], [-18.67, -20.7], [-18.243, -20.353], [-17.817, -20.007], [-17.39, -19.66], [-17.39, -19.66], [-17.34, -19.62], [-16.93, -19.3], [-16.52, -18.98], [-16.11, -18.66], [-16.07, -18.63], [-16.06, -18.62], [-15.82, -18.44], [-15.51, -18.25], [-15.16, -18.09], [-14.46, -17.93], [-14.26, -17.93], [-13.56, -18.08], [-13.38, -18.16], [-12.8, -18.58], [-12.67, -18.73], [-12.32, -19.36], [-12.24, -19.59], [-12.17, -20.22], [-12.19, -20.45], [-12.23, -20.71], [-12.31, -21.05], [-12.32, -21.09], [-12.427, -21.59], [-12.533, -22.09], [-12.64, -22.59], [-12.65, -22.64], [-12.757, -23.16], [-12.863, -23.68], [-12.97, -24.2], [-12.98, -24.25], [-13.073, -24.76], [-13.167, -25.27], [-13.26, -25.78], [-13.27, -25.83], [-13.353, -26.323], [-13.437, -26.817], [-13.52, -27.31], [-13.53, -27.36], [-13.61, -27.88], [-13.69, -28.4], [-13.77, -28.92], [-13.77, -28.92], [-13.78, -28.97], [-13.853, -29.48], [-13.927, -29.99], [-14.0, -30.5], [-14.0, -30.52], [-14.01, -30.57], [-14.07, -31.053], [-14.13, -31.537], [-14.19, -32.02], [-14.2, -32.07], [-14.25, -32.527], [-14.3, -32.983], [-14.35, -33.44], [-14.315, -34.02], [-14.28, -34.6], [-14.055, -35.135], [-13.83, -35.67], [-13.525, -36.02], [-13.22, -36.37], [-12.862, -36.684], [-12.504, -36.998], [-12.146, -37.312], [-11.788, -37.626], [-11.43, -37.94], [-11.42, -37.95], [-11.064, -38.264], [-10.708, -38.578], [-10.351, -38.891], [-9.995, -39.205], [-9.639, -39.519], [-9.283, -39.833], [-8.926, -40.146], [-8.57, -40.46], [-8.213, -40.774], [-7.855, -41.087], [-7.498, -41.401], [-7.14, -41.715], [-6.783, -42.029], [-6.425, -42.343], [-6.068, -42.656], [-5.71, -42.97], [-5.71, -42.97], [-5.354, -43.285], [-4.998, -43.6], [-4.641, -43.915], [-4.285, -44.23], [-3.929, -44.545], [-3.572, -44.86], [-3.216, -45.175], [-2.86, -45.49], [-2.35, -45.94], [-1.85, -46.3], [-1.76, -46.36], [-1.22, -46.57], [-0.68, -46.78], [-0.095, -46.795], [0.49, -46.81], [1.1, -46.595]], "hole": [[-0.17, -12.52], [-1.23, -12.46], [-1.57, -12.42], [-2.62, -12.25], [-2.94, -12.17], [-3.97, -11.88], [-4.28, -11.77], [-5.27, -11.36], [-5.58, -11.21], [-6.51, -10.7], [-6.79, -10.52], [-7.66, -9.9], [-7.92, -9.69], [-8.72, -8.98], [-8.96, -8.74], [-9.66, -7.95], [-9.87, -7.69], [-10.49, -6.82], [-10.67, -6.53], [-11.19, -5.6], [-11.33, -5.3], [-11.74, -4.31], [-11.85, -3.99], [-12.15, -2.97], [-12.22, -2.64], [-12.4, -1.59], [-12.44, -1.26], [-12.49, -0.2], [-12.49, 0.14], [-12.44, 1.2], [-12.4, 1.54], [-12.22, 2.59], [-12.15, 2.92], [-11.85, 3.94], [-11.74, 4.26], [-11.33, 5.24], [-11.19, 5.55], [-10.67, 6.48], [-10.49, 6.76], [-9.87, 7.63], [-9.66, 7.89], [-8.96, 8.69], [-8.72, 8.93], [-7.92, 9.64], [-7.66, 9.85], [-6.79, 10.46], [-6.51, 10.64], [-5.57, 11.16], [-5.27, 11.3], [-4.29, 11.71], [-3.97, 11.82], [-2.94, 12.12], [-2.62, 12.19], [-1.57, 12.37], [-1.23, 12.41], [-0.17, 12.47], [0.17, 12.47], [1.23, 12.41], [1.57, 12.37], [2.62, 12.19], [2.94, 12.12], [3.97, 11.82], [4.29, 11.71], [5.27, 11.3], [5.57, 11.16], [6.51, 10.64], [6.79, 10.46], [7.66, 9.85], [7.92, 9.64], [8.72, 8.93], [8.96, 8.69], [9.66, 7.89], [9.87, 7.63], [10.49, 6.76], [10.67, 6.48], [11.19, 5.55], [11.33, 5.24], [11.74, 4.26], [11.85, 3.94], [12.15, 2.92], [12.22, 2.59], [12.4, 1.54], [12.44, 1.2], [12.49, 0.14], [12.49, -0.2], [12.44, -1.26], [12.4, -1.59], [12.22, -2.64], [12.15, -2.97], [11.85, -3.99], [11.74, -4.31], [11.33, -5.3], [11.19, -5.6], [10.67, -6.53], [10.49, -6.82], [9.87, -7.69], [9.66, -7.95], [8.96, -8.74], [8.72, -8.98], [7.92, -9.69], [7.66, -9.9], [6.79, -10.52], [6.51, -10.7], [5.58, -11.21], [5.27, -11.36], [4.28, -11.77], [3.97, -11.88], [2.94, -12.17], [2.62, -12.25], [1.57, -12.42], [1.23, -12.46], [0.17, -12.52]], "dot": [[9.5, -0.03], [9.44, 1.04], [9.26, 2.09], [8.97, 3.11], [8.56, 4.09], [8.04, 5.03], [7.43, 5.9], [6.72, 6.69], [5.92, 7.4], [5.05, 8.02], [4.12, 8.53], [3.14, 8.94], [2.11, 9.23], [1.06, 9.41], [0.0, 9.47], [-1.06, 9.41], [-2.11, 9.23], [-3.14, 8.94], [-4.12, 8.53], [-5.05, 8.02], [-5.92, 7.4], [-6.72, 6.69], [-7.43, 5.9], [-8.04, 5.03], [-8.56, 4.09], [-8.97, 3.11], [-9.26, 2.09], [-9.44, 1.04], [-9.5, -0.03], [-9.44, -1.09], [-9.26, -2.14], [-8.97, -3.16], [-8.56, -4.15], [-8.04, -5.08], [-7.43, -5.95], [-6.72, -6.74], [-5.92, -7.45], [-5.05, -8.07], [-4.12, -8.59], [-3.14, -8.99], [-2.11, -9.29], [-1.06, -9.47], [0.0, -9.53], [1.06, -9.47], [2.11, -9.29], [3.14, -8.99], [4.12, -8.59], [5.05, -8.07], [5.92, -7.45], [6.72, -6.74], [7.43, -5.95], [8.04, -5.08], [8.56, -4.15], [8.97, -3.16], [9.26, -2.14], [9.44, -1.09]]};
+// The Petal House rig from the studio, trimmed to embed: one soft shape per figure, five petal spines, wind,
+// and optional cursor play (petals give way as you pass, and you can grab one and fold it).
+const D = Math.PI/180;
+const AX = [-163, -89, -15, 48, 135], NAMES = ['left','roof','right','footR','footL'], ROOT = [1, 1, 1, 0.45, 0.45];
+const U0 = 13.5, SIG = 30*D, N = 40, BASE = 32;
+const angd = (a, b) => { let d = a - b; while (d > Math.PI) d -= 2*Math.PI; while (d < -Math.PI) d += 2*Math.PI; return d; };
+const area = a => a.reduce((s, p, i) => { const q = a[(i + 1) % a.length]; return s + p[0]*q[1] - q[0]*p[1]; }, 0);
+if (Math.sign(area(SOFT.outer)) === Math.sign(area(SOFT.hole))) SOFT.hole.reverse();
+const noise = (t, s) => Math.sin(t*1.31 + s)*0.5 + Math.sin(t*2.73 + s*2.1)*0.3 + Math.sin(t*5.9 + s*0.7)*0.2;
+const ease = x => { x = Math.max(0, Math.min(1, x)); return x*x*(3 - 2*x); };
 
-function layoutRows() {
-  const wide = innerWidth > 900;
-  stage.querySelectorAll('.step').forEach((el, i) => el.style.gridRow = wide ? `${i + 1} / span 2` : '');
-  const again = stage.querySelector('.again');
-  again.style.gridRow = wide ? String(stage.querySelectorAll('.step').length + 2) : '';
+const POSES = {
+  rest:  t => ({}),
+  wave:  t => ({right: {bend: -62 + 30*Math.sin(t*7), str: 1.26}, roof: {bend: -14, str: 0.96}, lean: -5}),
+  hello: t => ({roof: {bend: 34 + 6*Math.sin(t*2.2), str: 1.04}, right: {bend: 12}, left: {bend: 10}, lean: 6}),
+  // the thinker: one petal curls in under the ring like a hand on the chin, head tilted, a slow tap
+  think: t => { const tap = Math.max(0, Math.sin(t*2.4))**8;
+                return {right: {bend: 150 - 12*tap, str: 0.74}, roof: {bend: -18 + 5*Math.sin(t*0.9), str: 1.02}, left: {bend: -6}, lean: -10 + 2*Math.sin(t*0.9), sq: 0.97, thought: true}; },
+  // looking around: up on tiptoe, turning to scan one way and then the other, a petal raised to shade its eyes
+  look:  t => { const s = Math.sin(t*0.85), s2 = Math.sin(t*0.85 - 0.7);
+                return {lean: 13*s, x: 7*s, lift: 3 + 2*Math.abs(s), sq: 1.05, roof: {bend: 26*s2, str: 1.08},
+                        right: {bend: -48 + 14*s2, str: 1.12}, left: {bend: -18*s2}, footL: {bend: -12*s, str: 1.08}, footR: {bend: -12*s, str: 1.08}}; },
+  // meeting: reach out, shake petals, let go, then hop twice together (both figures run the same clock)
+  meet:  t => { const c = t % 5.2, reach = ease(c/0.6)*(1 - ease((c - 2.5)/0.4));
+                const shake = c > 0.6 && c < 2.5 ? 10*Math.sin((c - 0.6)*10) : 0;
+                const hp = c > 2.9 && c < 4.5 ? ((c - 2.9)/0.8) % 1 : -1, up = hp >= 0 ? Math.sin(hp*Math.PI) : 0, land = hp >= 0 && hp < 0.12 ? 1 - hp/0.12 : 0;
+                return {right: {bend: 18*reach + shake, str: 1 + 0.32*reach}, lean: 4*reach, x: 3*reach,
+                        lift: 18*up, sq: 1 + 0.1*up - 0.12*land, footL: {bend: 24*up}, footR: {bend: -24*up}, left: {bend: 20*up}, roof: {str: 1 + 0.08*up}}; },
+  // sitting: feet out in front and swinging a little, body settled low
+  step:  t => ({footL: {bend: -42 + 14*Math.sin(t*3.2), str: 1.1}, footR: {bend: 42 + 14*Math.sin(t*3.2 + 2.4), str: 1.1}, lean: -2, sq: 0.95}),
+  walk:  t => { const s = Math.sin(t*8), c = Math.cos(t*8);
+                return {footR: {bend: 24*s, str: 1 + 0.07*c}, footL: {bend: 24*s, str: 1 - 0.07*c}, left: {bend: -12*s}, right: {bend: -12*s}, roof: {bend: -6*s}, lean: 5, lift: 2.5*Math.abs(c)}; },
+  stretch: t => { const k = 0.5 + 0.5*Math.sin(t*2.2); return {left: {str: 1 + 0.22*k, bend: 10*k}, right: {str: 1 + 0.22*k, bend: -10*k}, roof: {str: 1 + 0.2*k}, sq: 1 + 0.05*k}; },
+  hop:   t => { const ph = (t*1.1) % 1, up = Math.max(0, Math.sin(ph*Math.PI)), land = ph < 0.12 ? 1 - ph/0.12 : 0;
+                return {lift: 22*up, sq: 1 + 0.1*up - 0.14*land, footL: {bend: 26*up, str: 1 + 0.06*up}, footR: {bend: -26*up, str: 1 + 0.06*up}, left: {bend: 22*up}, right: {bend: -22*up}, roof: {str: 1 + 0.08*up}}; },
+};
+
+function makeFigure(o){
+  const petals = AX.map((a, i) => ({name: NAMES[i], a: a*D, dx: Math.cos(a*D), dy: Math.sin(a*D), bend:0, bv:0, str:1, sv:0, rip:0, ripv:0, L:0, root:ROOT[i], ph: i*1.9 + (o.seed || 0), om: 6 + i*0.55, ext: 0, drag: null}));
+  const weights = (x, y) => { const th = Math.atan2(y, x); const w = petals.map(p => Math.exp(-Math.pow(angd(th, p.a)/SIG, 2))); const s = w.reduce((a, b) => a + b, 0); return w.map(v => v/s); };
+  const prep = arr => arr.map(([x, y]) => ({w: weights(x, y), u: petals.map(p => x*p.dx + y*p.dy), v: petals.map(p => -x*p.dy + y*p.dx)}));
+  const f = {petals, weights, OUT: prep(SOFT.outer), HOLE: prep(SOFT.hole), DOT: prep(SOFT.dot), G: {lean:0, lv:0, lift:0, liftv:0, sq:1, sqv:0, x:0, xv:0},
+             pose: o.pose || 'rest', poseT: 0, color: o.color, ox: o.ox || 0, mirror: !!o.mirror, leanExt: 0};
+  f.OUT.forEach(q => petals.forEach((p, i) => { if (q.w[i] > 0.5) p.L = Math.max(p.L, q.u[i]); }));
+  return f;
 }
 
-// Smooth curve through points with horizontal tangents: switchbacks that read like a road seen from above at a low angle.
-function roadPath(p) {
-  const k = 0.552;
-  let d = `M${p[0].x},${p[0].y}`;
-  for (let i = 1; i < p.length; i++) {
-    const a = p[i - 1], b = p[i], m = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-    d += ` C${a.x},${a.y + k * (m.y - a.y)} ${m.x - k * (m.x - a.x)},${m.y} ${m.x},${m.y}`;
-    d += ` C${m.x + k * (b.x - m.x)},${m.y} ${b.x},${b.y - k * (b.y - m.y)} ${b.x},${b.y}`;
+function makeRig(cv, o){
+  const ctx = cv.getContext('2d');
+  const figs = (o.figures || [o]).map(makeFigure);
+  const streaks = [];
+  let time = 0, W = 0, H = 0, dpr = 1, drag = null, lastPt = null;
+  const rig = {figs, wind: o.wind ?? 0.3, gust: o.gust ?? 0.4, line: o.line, set: o.set || null, setColor: o.setColor};
+  rig.setPose = (p, i = 0) => { const f = figs[i]; if (p !== f.pose) { f.pose = p; f.poseT = 0; } kick(); };
+  const view = () => { const s = Math.min(W, H)/(o.span || 150); return {s, ox: W*(o.cx ?? 0.5), oy: H*(o.cy ?? 0.6)}; };
+
+  function spine(p){
+    const L = p.L - U0, pts = []; let x = U0, y = 0, phi = 0;
+    for (let k = 0; k <= N; k++){
+      const s = k/N, j = Math.min(1, s/0.4), joint = j*j*(3 - 2*j);
+      phi = p.bend*(0.62*joint + 0.38*Math.pow(s, 1.5)) + p.rip*Math.pow(s, 1.1)*Math.sin(6.5*s - time*p.om + p.ph);
+      pts.push([x, y, phi]); const du = (L/N)*p.str; x += Math.cos(phi)*du; y += Math.sin(phi)*du;
+    }
+    p.sp = pts;
   }
-  return d;
-}
-
-// Positions come from offsetLeft/offsetTop (layout boxes), so fades and frame resizes never move the line.
-function box(el) { return { l: el.offsetLeft, t: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight }; }
-let line = null, path = null, car = null, pinLens = [], loopStart = 0;
-
-// A single line in the gutter with every stop on it, in story order.
-function draw() {
-  stage.querySelectorAll('svg.road, .pin').forEach(n => n.remove());
-  const wide = innerWidth > 900;
-  const W = stage.clientWidth;
-  const steps = [...stage.querySelectorAll('.step')];
-  const ag = box(stage.querySelector('.again'));
-  const cx = Math.round(wide ? W / 2 : 28);
-  const top = 8, bottom = Math.round(ag.t);
-  // One straight line down the middle; the dot travels it top to bottom, then starts over.
-  const d = `M${cx},${top} L${cx},${bottom}`;
-  line = { x: cx, top, bottom };
-  const svg = document.createElementNS(NS, 'svg');
-  svg.setAttribute('class', 'road'); svg.setAttribute('aria-hidden', 'true');
-  path = document.createElementNS(NS, 'path'); path.setAttribute('class', 'mid'); path.setAttribute('d', d); svg.appendChild(path);
-  pts = [];
-  steps.forEach(el => {
-    const r = box(el), left = el.classList.contains('sb');
-    const y = Math.round(r.t + Math.min(90, r.h / 2));
-    const x = cx;
-    pts.push({ x, y });
-    if (wide) {
-      const edge = left ? r.l + r.w : r.l;
-      const stub = document.createElementNS(NS, 'path'); stub.setAttribute('class', 'stub'); stub.setAttribute('d', `M${x},${y} L${edge},${y}`); svg.appendChild(stub);
-    }
-  });
-  car = document.createElementNS(NS, 'circle'); car.setAttribute('class', 'car'); car.setAttribute('r', '8'); car.setAttribute('cx', '-99'); car.setAttribute('cy', '-99'); svg.appendChild(car);
-  stage.prepend(svg);
-  pts.forEach(p => {
-    const pin = document.createElement('div'); pin.className = 'pin'; pin.setAttribute('aria-hidden', 'true');
-    pin.style.left = p.x + 'px'; pin.style.top = p.y + 'px'; pin.innerHTML = markSVG; stage.appendChild(pin);
-  });
-}
-
-let lastW = 0;
-function relayout() {
-  const w = stage.clientWidth; if (w === lastW && path) return; lastW = w;
-  layoutRows(); requestAnimationFrame(draw);
-}
-
-// Zip, pause, light up; repeat down the line until every stop is lit, then all go quiet and it starts again.
-function run() {
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  stage.classList.add('running', 'seq');
-  const ZIP = 650, PAUSE = 1500, HOLD = 2200, REST = 900;
-  const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-  const steps = () => [...stage.querySelectorAll('.step')];
-  const pins = () => [...stage.querySelectorAll('.pin')];
-  const again = stage.querySelector('.again');
-  const light = n => {
-    steps().forEach((s, i) => s.classList.toggle('lit', i < n));
-    pins().forEach((p, i) => p.classList.toggle('lit', i < n));
-    again.classList.toggle('lit', n > steps().length);
-  };
-  const stopY = i => i === 0 ? line.top : (i <= pts.length ? pts[i - 1].y : line.bottom);
-  let phase = 'rest', i = 0, t0 = performance.now(), from = 0;
-  light(0);
-  const frame = now => {
-    if (line && car) {
-      const el = now - t0, last = pts.length + 1;
-      if (phase === 'rest') {
-        car.style.opacity = 0; car.setAttribute('cx', line.x); car.setAttribute('cy', line.top);
-        if (el > REST) { phase = 'zip'; i = 1; from = line.top; t0 = now; car.style.opacity = 1; }
-      } else if (phase === 'zip') {
-        const k = Math.min(1, el / ZIP), y = from + (stopY(i) - from) * ease(k);
-        car.setAttribute('cx', line.x); car.setAttribute('cy', y.toFixed(1));
-        if (k >= 1) { light(i); phase = 'pause'; t0 = now; }
-      } else if (phase === 'pause') {
-        if (el > (i === last ? HOLD : PAUSE)) {
-          if (i === last) { light(0); phase = 'rest'; }
-          else { from = stopY(i); i++; phase = 'zip'; }
-          t0 = now;
-        }
+  function deform(p, u, v){
+    if (u <= U0) return [u, v];
+    const L = p.L - U0, s = (u - U0)/L; let k0 = Math.min(N - 1, Math.floor(s*N)), fr = s*N - k0;
+    if (s > 1){ k0 = N - 1; fr = 1 + (s - 1)*N; }
+    const a = p.sp[k0], b = p.sp[k0 + 1];
+    const cx = a[0] + (b[0] - a[0])*fr, cy = a[1] + (b[1] - a[1])*fr, ph = a[2] + (b[2] - a[2])*Math.min(fr, 1);
+    const vv = v*(1 + (p.str - 1)*0.25*Math.min(1, s));
+    return [cx - Math.sin(ph)*vv, cy + Math.cos(ph)*vv];
+  }
+  function place(f, q){
+    const G = f.G; let X = 0, Y = 0;
+    for (let i = 0; i < 5; i++){ const w = q.w[i]; if (w < 0.002) continue; const p = f.petals[i], [lu, lv] = deform(p, q.u[i], q.v[i]); X += w*(lu*p.dx - lv*p.dy); Y += w*(lu*p.dy + lv*p.dx); }
+    Y = BASE + (Y - BASE)*G.sq; X = X/Math.sqrt(G.sq);
+    const c = Math.cos(G.lean), s = Math.sin(G.lean), yy = Y - BASE;
+    return [X*c - yy*s + G.x, BASE + X*s + yy*c - G.lift];
+  }
+  function physics(dt){
+    time += dt;
+    const Wd = rig.wind, gust = 1 + rig.gust*1.8*Math.max(0, noise(time*0.55, 11)) + rig.gust*0.6*noise(time*1.7, 4);
+    figs.forEach(f => {
+      f.poseT += dt;
+      const tg = f.tg = POSES[f.pose](f.poseT), k = 180, c = 2*Math.sqrt(k)*0.36, G = f.G;
+      f.petals.forEach((p, i) => {
+        const t = tg[p.name] || {}; let bt = (t.bend || 0)*D + p.ext, st = t.str || 1;
+        const push = -p.dy + (p.dx < 0 ? 0.9*(-p.dx)*(p.dy <= 0 ? 1 : -1) : 0), flutter = noise(time*(3.2 + i*0.4), p.ph);
+        bt += Wd*gust*p.root*(push*58*D + flutter*8*D); st += Wd*gust*p.root*(0.12*Math.max(0, p.dx) + 0.04 + 0.05*flutter);
+        if (p.drag) { bt = p.drag.bend; st = p.drag.str; }
+        const ripT = Wd*(0.5 + 0.5*gust)*p.root*0.42;
+        p.ripv += (30*(ripT - p.rip) - 8*p.ripv)*dt; p.rip += p.ripv*dt;
+        const kk = (p.drag ? k*3 : k)*(1 - 0.45*Wd);
+        p.bv += (kk*(bt - p.bend) - c*p.bv)*dt; p.bend += p.bv*dt;
+        p.sv += (kk*1.6*(st - p.str) - c*1.2*p.sv)*dt; p.str = Math.max(0.45, Math.min(1.6, p.str + p.sv*dt));
+      });
+      const kp = 70, cp = 2*Math.sqrt(kp)*0.35, leanT = (tg.lean || 0)*D + f.leanExt + Wd*(5 + 4*gust + 3*noise(time*0.7, 2))*D;
+      G.lv += (kp*(leanT - G.lean) - cp*G.lv)*dt; G.lean += G.lv*dt;
+      G.liftv += (160*((tg.lift || 0) - G.lift) - 2*Math.sqrt(160)*0.5*G.liftv)*dt; G.lift += G.liftv*dt;
+      G.sqv += (220*((tg.sq || 1) - G.sq) - 2*Math.sqrt(220)*0.3*G.sqv)*dt; G.sq += G.sqv*dt;
+      G.xv += (60*((tg.x || 0) - G.x) - 2*Math.sqrt(60)*0.5*G.xv)*dt; G.x += G.xv*dt;
+    });
+    // wind lines cross the whole canvas when it is a wide strip (cx 0), otherwise just the space around the mark
+    const sv = view().s, x0 = o.cx === 0 ? -60 : -120, x1 = o.cx === 0 ? W/sv + 60 : 125, rate = o.streakRate ?? 1;
+    if ((Wd > 0.04 || o.streakRate) && Math.random() < dt*rate*(0.5 + 2*Math.max(Wd, 0.3)*gust)*(o.cx === 0 ? (x1 - x0)/245 : 1))
+      streaks.push({x0, x1, head: x0, y: -48 + Math.random()*80, L: 34 + Math.random()*34, A: 1 + Math.random()*2.5, ph: Math.random()*6, loop: Math.random() < 0.6, R: 6 + Math.random()*5, v: (45 + 70*Wd + Math.random()*20)*(o.streakSpeed || 1)});
+    for (let j = streaks.length - 1; j >= 0; j--){ const q = streaks[j]; q.head += q.v*gust*dt; if (q.head - q.L > q.x1) streaks.splice(j, 1); }
+  }
+  function path(c, pts){ c.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]); c.closePath(); }
+  function draw(){
+    const v = view();
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    ctx.save();
+    // a strip can be clipped to its frames, so the mark seems to pass behind the gaps between them
+    if (o.clipRects) { ctx.beginPath(); o.clipRects().forEach(r => ctx.rect(r[0], r[1], r[2], r[3])); ctx.clip(); }
+    ctx.translate(v.ox, v.oy); ctx.scale(v.s, v.s);
+    ctx.save(); ctx.strokeStyle = rig.line; ctx.lineWidth = 1; ctx.lineCap = 'round';
+    streaks.forEach(q => {
+      ctx.globalAlpha = 0.5*Math.max(0, Math.min(1, (q.head - q.x0 - 10)/30, (q.x1 - (q.head - q.L))/30)); ctx.beginPath();
+      for (let i = 0; i <= 100; i++){
+        const u = i/100; let x = q.head - q.L*(1 - u), y = q.y + q.A*Math.sin(x*0.045 + q.ph);
+        if (q.loop){ const prog = Math.min(1, Math.max(0, (q.head - q.x0)/(q.x1 - q.x0 + q.L))), at = 0.9 - 0.75*prog, Rr = q.R*(0.35 + 0.65*Math.sin(Math.PI*prog));
+          const w0 = Math.min(1, Math.max(0, (u - at)/0.26)), a = w0*w0*(3 - 2*w0)*2*Math.PI; x += Rr*Math.sin(a); y -= Rr*(1 - Math.cos(a)); }
+        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
+      ctx.stroke();
+    });
+    ctx.restore();
+    figs.forEach(f => {
+      ctx.save(); ctx.translate(f.ox, 0); if (f.mirror) ctx.scale(-1, 1);
+      f.petals.forEach(spine);
+      if (rig.set === 'floor'){ ctx.fillStyle = rig.setColor; ctx.beginPath(); ctx.ellipse(f.G.x, BASE + 1.5, 40*(1 - f.G.lift/90), 3.2*(1 - f.G.lift/90), 0, 0, 2*Math.PI); ctx.fill(); }
+      ctx.fillStyle = f.color; ctx.beginPath(); path(ctx, f.OUT.map(q => place(f, q))); path(ctx, f.HOLE.map(q => place(f, q))); ctx.fill('nonzero');
+      ctx.beginPath(); path(ctx, f.DOT.map(q => place(f, q))); ctx.fill();
+      if (f.tg && f.tg.thought){
+        // a thought rising: three dots that appear one after another
+        ctx.fillStyle = rig.line;
+        for (let i = 0; i < 3; i++){ const a = ease((((time*0.7) % 1.6) - i*0.3)/0.25); ctx.globalAlpha = a; ctx.beginPath(); ctx.arc(32 + i*9, -42 - i*9, 2 + i*1.4, 0, 2*Math.PI); ctx.fill(); }
+        ctx.globalAlpha = 1;
+      }
+      ctx.restore();
+    });
+    ctx.restore();
+  }
+  function resize(){ dpr = Math.min(2, window.devicePixelRatio || 1); W = cv.clientWidth; H = cv.clientHeight; cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); if (o.director) o.director(0, rig, view().s); draw(); }
+  new ResizeObserver(resize).observe(cv);
+  let visible = false, last = 0, running = false;
+  function frame(now){
+    if (!visible || cv.offsetParent === null) { running = false; return; }
+    const dt = Math.min(1/30, (now - last)/1000); last = now;
+    if (o.colorEl) { const col = getComputedStyle(o.colorEl).color; figs[0].color = col; rig.line = col; }
+    if (!window.GP_PAUSED || drag) {
+      if (o.director) o.director(dt, rig, view().s);
+      for (let i = 0; i < 4; i++) physics(dt/4);
     }
-    requestAnimationFrame(frame);
-  };
-  requestAnimationFrame(frame);
-}
-run();
-if ('ResizeObserver' in window) new ResizeObserver(relayout).observe(stage); else addEventListener('resize', relayout);
-document.fonts && document.fonts.ready.then(() => { lastW = 0; relayout(); });
-relayout();
-</script>
+    draw(); requestAnimationFrame(frame);
+  }
+  function kick(){ if (!running && visible) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
+  rig.kick = kick;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; kick(); }).observe(cv);
 
+  // ---------- cursor play (first figure only) ----------
+  if (o.interactive){
+    const f = figs[0];
+    const toMark = e => { const r = cv.getBoundingClientRect(), v = view(); return [(e.clientX - r.left - v.ox)/v.s - f.ox, (e.clientY - r.top - v.oy)/v.s]; };
+    const nearest = (x, y) => { const w = f.weights(x, y); return f.petals[w.indexOf(Math.max(...w))]; };
+    cv.addEventListener('pointermove', e => {
+      const [x, y] = toMark(e), r = Math.hypot(x, y), th = Math.atan2(y, x);
+      if (drag) {
+        const p = drag.p, a0 = Math.atan2(drag.y0, drag.x0), r0 = Math.hypot(drag.x0, drag.y0);
+        p.drag = {bend: Math.max(-150*D, Math.min(150*D, drag.b0 + angd(th, a0)*2.2)), str: Math.max(0.6, Math.min(1.5, drag.s0*(1 + (r - r0)/Math.max(14, p.L))))};
+        return;
+      }
+      // petals give way as the cursor passes: the one under it bends aside, its neighbours a little, and the body leans in
+      const reach = 78;
+      f.petals.forEach(p => {
+        const d = angd(th, p.a), near = Math.exp(-Math.pow(d/(38*D), 2))*Math.max(0, 1 - Math.abs(r - p.L*0.75)/reach);
+        p.ext = -Math.sign(d || 1)*62*D*near;
+      });
+      f.leanExt = Math.max(-1, Math.min(1, x/110))*7*D;
+      if (lastPt) { const sp = Math.hypot(x - lastPt[0], y - lastPt[1]); if (sp > 2 && r < 60) { const p = nearest(x, y); p.bv += -Math.sign(angd(th, p.a) || 1)*Math.min(5, sp*0.25); } }
+      lastPt = [x, y];
+      cv.style.cursor = r > 12 && r < 55 ? 'grab' : 'default';
+      kick();
+    });
+    cv.addEventListener('pointerleave', () => { f.petals.forEach(p => p.ext = 0); f.leanExt = 0; lastPt = null; });
+    cv.addEventListener('pointerdown', e => {
+      const [x, y] = toMark(e), r = Math.hypot(x, y);
+      if (r < 10 || r > 62) return;
+      const p = nearest(x, y);
+      if (e.pointerType === 'touch') { p.bv += (Math.random() < 0.5 ? -1 : 1)*14; f.G.liftv += 60; kick(); return; }
+      drag = {p, x0: x, y0: y, b0: p.bend, s0: p.str}; cv.setPointerCapture(e.pointerId); cv.style.cursor = 'grabbing'; kick();
+    });
+    const end = () => { if (!drag) return; drag.p.drag = null; drag = null; cv.style.cursor = 'grab'; };
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  }
+  return rig;
+}
+
+(function(){
+  const C = {orange: '#C4462A', bone: '#F3DCC2', paper: '#FBF5EC', ink: '#1B2620', pine: '#234536', sky: '#8DB3D3'};
+  const rigs = [];
+  // the motion is gentle and always on; this footer button stops all of it
+  const motionBtn = document.getElementById('motionBtn');
+  motionBtn.addEventListener('click', () => {
+    window.GP_PAUSED = !window.GP_PAUSED;
+    document.body.classList.toggle('paused', window.GP_PAUSED);
+    motionBtn.setAttribute('aria-pressed', window.GP_PAUSED);
+    motionBtn.textContent = window.GP_PAUSED ? 'Play motion' : 'Pause motion';
+    if (!window.GP_PAUSED) rigs.forEach(r => r.kick());
+  });
+  // a director walks figure `who` through a list of beats: [pose, seconds, from, to] where from/to name panel spots
+  function director(stage, beats, onBeat){
+    const panels = [...stage.querySelectorAll('.panel')], reel = stage.parentElement;
+    let t = 0, cur = -1, cam = 0;
+    const total = beats.reduce((s, b) => s + b.dur, 0);
+    return (dt, rig, s) => {
+      t = (t + dt*1.35) % total;
+      const center = i => (panels[i].offsetLeft + panels[i].offsetWidth/2)/s;
+      const spot = k => k === 'offR' ? stage.clientWidth/s + 80 : k === 'offL' ? -80 : typeof k === 'object' ? center(k.p) + k.d : center(k);
+      let acc = 0, i = 0; while (t > acc + beats[i].dur) { acc += beats[i].dur; i++; }
+      const b = beats[i], k = (t - acc)/b.dur, e = b.ease === false ? k : k*k*(3 - 2*k);
+      if (i !== cur) { cur = i; b.on && b.on(rig); onBeat && onBeat(b.cap); if (b.cap !== undefined) panels.forEach((el, j) => el.classList.toggle('on', j === b.cap)); }
+      const f = rig.figs[b.who ?? (rig.figs.length - 1)];
+      f.ox = spot(b.from) + (spot(b.to ?? b.from) - spot(b.from))*(b.to === undefined ? 0 : (b.ease === false ? k : e));
+      if (b.pose) rig.setPose(b.pose, rig.figs.indexOf(f));
+      const room = stage.scrollWidth - reel.clientWidth;
+      if (room > 0) {
+        const want = Math.min(room, Math.max(0, f.ox*s - reel.clientWidth/2));
+        cam = dt ? cam + (want - cam)*Math.min(1, dt*3.2) : want;
+        stage.style.transform = `translateX(${-cam.toFixed(1)}px)`;
+      } else if (cam) { cam = 0; stage.style.transform = ''; }
+      (b.also || []).forEach(([fi, pose, at]) => { rig.figs[fi].ox = spot(at); rig.setPose(pose, fi); });
+    };
+  }
+  const S = (p, d) => ({p, d});
+  const frames = stage => () => [...stage.querySelectorAll('.panel')].map(el => [el.offsetLeft, el.offsetTop, el.offsetWidth, el.offsetHeight]);
+  const caps = (sel) => { const els = [...document.querySelectorAll(sel)]; return i => { if (i !== undefined) els.forEach((el, j) => el.classList.toggle('on', j === i)); }; };
+
+  const bHero = document.getElementById('bHero');
+  const hero = makeRig(document.getElementById('heroMark'), {color: C.bone, line: C.bone, colorEl: bHero, wind: 0.26, gust: 0.4, span: 165, cy: 0.6, interactive: true});
+  rigs.push(hero);
+
+  // buyer strip: the bone mark thinks in frame 1, walks to frame 2 and looks around, walks to frame 3,
+  // shakes hands with the builder's ink mark, walks on past it and comes back round to frame 1
+  const B = 0, K = 1; // figure 0 = ink (drawn first, behind), figure 1 = bone
+  const bBeats = [
+    {pose: 'think', dur: 4.5, from: 0, cap: 0, also: [[0, 'rest', S(2, 50)]]},
+    {pose: 'walk', dur: 2.4, from: 0, to: 1, ease: false, cap: 1},
+    {pose: 'look', dur: 4.6, from: 1},
+    {pose: 'walk', dur: 2.2, from: 1, to: S(2, -50), ease: false, cap: 2, also: [[0, 'hello', S(2, 50)]]},
+    {pose: 'meet', dur: 2.9, from: S(2, -50), also: [[0, 'meet', S(2, 50)]]},
+    {pose: 'walk', dur: 2.8, from: S(2, -50), to: 'offR', ease: false, also: [[0, 'rest', S(2, 50)]]},
+    {pose: 'walk', dur: 2.6, from: 'offL', to: 0, ease: false, cap: 0},
+  ];
+  const bStage = document.getElementById('bStage');
+  rigs.push(makeRig(document.getElementById('bWalk'), {
+    figures: [{pose: 'rest', color: C.ink, mirror: true, seed: 3}, {pose: 'think', color: C.bone}],
+    line: C.bone, wind: 0.14, gust: 0.35, streakRate: 0.4, span: 175, cx: 0, cy: 0.72, set: 'floor', setColor: 'rgba(0,0,0,.2)', clipRects: frames(bStage),
+    director: director(bStage, bBeats, caps('#bCaps .cap'))
+  }));
+
+  document.getElementById('closeJoin').addEventListener('click', () => { window.scrollTo({top: 0, behavior: 'smooth'}); setTimeout(() => document.getElementById('joinEmail').focus({preventScroll: true}), 500); });
+
+  // the hero mark waves when you go for the button, and hops when you join
+  const form = document.getElementById('joinForm'), btn = form.querySelector('.btn'), msg = document.getElementById('joinMsg');
+  ['pointerenter', 'focus'].forEach(e => btn.addEventListener(e, () => hero.setPose('wave')));
+  ['pointerleave', 'blur'].forEach(e => btn.addEventListener(e, () => hero.setPose('rest')));
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = document.getElementById('joinEmail').value.trim();
+    if (!/.+@.+\..+/.test(email)) { msg.textContent = 'Add an email address so we can write to you.'; return; }
+    btn.disabled = true;
+    try {
+      const r = await fetch('/api/waitlist', {method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, who: 'buyer', page: location.pathname, website: document.getElementById('joinSite').value})});
+      if (!r.ok) throw new Error(r.status);
+      msg.textContent = "You're on the list. We'll write when we find homes that are a match";
+      form.reset(); hero.setPose('hop');
+    } catch (err) {
+      msg.innerHTML = 'We couldn\'t save that just now. Write to <a href="mailto:hello@getgoodplace.com?subject=Waitlist">hello@getgoodplace.com</a> and we\'ll add you.';
+    } finally { btn.disabled = false; }
+  });
+})();
+</script>
 </body>
 </html>
